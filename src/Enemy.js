@@ -2,8 +2,10 @@
 
 class Enemy extends Character {
 
-    constructor() {
-
+    constructor(canvas, game) {
+        this.canvas = canvas;
+        
     }
+ 
     
 }

@@ -2,13 +2,14 @@
 
 class Character {
 
-    constructor(canvas) {
+    constructor(canvas, game) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.direction = 0;
         this.sizeX = 40;
         this.sizeY = 60;
         this.lives = 3;
+        this.game = game;
 
         this.x = (canvas.width / 2) - (this.sizeX / 2);
         this.y = canvas.height - 80;
@@ -27,15 +28,18 @@ class Character {
     }
 
     checkCollisions() {
-        console.log(this.canvas.width)
-        if (this.x + (this.sizeX / 2) >= this.canvas.width) {
-            this.direction = 0;
+        if (this.x + this.sizeX >= this.canvas.width) {
+            // console.log("out")
+            this.x = this.canvas.width - this.sizeX - 1;
         }
+        if (this.x <= 0) {
+            this.x = 1;
+        }
+
     }
 
     shoot() {
-        console.log("im shooting");
-        
+        this.game.bullets.push(new Bullet(this.canvas, this));
     }
 
     receiveDamage() {

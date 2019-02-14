@@ -15,7 +15,8 @@ class Game {
     }
 
     startGame() {
-        this.players.push(new Player(this.canvas));
+        this.players.push(new Player(this.canvas, this));
+        // console.log(this)
         this.startLoop();
     }
 
@@ -38,22 +39,35 @@ class Game {
         const animationFrameID = window.requestAnimationFrame(loop);
     }
 
+    generateEnemies() {
+        if (Math.random() * 100 > 98) {
+            console.log("YES")
+        }
+    }
+
     update() {
         this.players.forEach(function (player) {
             player.update();
             player.draw();
-            // player.checkCollisions();
+            player.checkCollisions();
+            
         });
 
         this.bullets.forEach(function (bullet) {
+            if (bullet.outOfCanvas) {
+                this.bullets.splice(this.bullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
+            }
             bullet.update();
             bullet.draw();
-        });
+            
+        }.bind(this));
 
         this.enemies.forEach(function (enemy) {
-            enemy.update();
-            enemy.draw();
+            // enemy.update();
+            // enemy.draw();
         });
+        
+        this.generateEnemies();
     }
 
     

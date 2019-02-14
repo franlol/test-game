@@ -2,8 +2,8 @@
 
 class Player extends Character {
 
-    constructor(canvas) {
-        super(canvas);
+    constructor(canvas, game) {
+        super(canvas, game);
         this.speed = 6;
         // this.canvas = canvas;                            //SUPER
         // this.ctx = this.canvas.getContext("2d");         //SUPER

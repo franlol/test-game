@@ -63,7 +63,6 @@ class Screen {
             switch (e.code) {
                 case "KeyA":
                     this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
-                    console.log(keyRightPushed)
                     keyLeftPushed = true;
                     break;
                 case "KeyD":
@@ -72,11 +71,8 @@ class Screen {
                     break;
                 case "Space":
                     this.game.players[0].shoot();
-                    this.game.bullets.push(new Bullet(this));
-                    console.log(this.game.bullets);
                     break;
             }
-            // console.log(e)
         });
         document.addEventListener("keyup", (e) => {
             switch (e.code) {
