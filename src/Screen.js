@@ -3,8 +3,9 @@
 class Screen {
 
     constructor() {
-        this.canvasHeight = 600;
-        this.canvasWidth = 600;
+        this.canvasWidth = 300;
+        this.canvasHeight = 300;
+        this.game;
     }
 
     buildDom = (html) => {
@@ -41,8 +42,8 @@ class Screen {
         <section class="game-section">
             <ul>
                 <li><h1>Score: </h1></li>
-                <li><canvas></canvas></li>
                 <li><button id="game-button-game-over">Game Over</button></li>
+                <li><canvas></canvas></li>
             </ul>
         </section>
         <footer>made with love by franlol</footer>
@@ -52,7 +53,10 @@ class Screen {
 
         this.canvasConstruct(canvasId);
 
-        button.addEventListener("click", this.gameOverScreen);
+        button.addEventListener("click", () => {
+            this.game.isGameOver = true;
+            this.gameOverScreen;
+        });
     }
 
     gameOverScreen = () => {
@@ -67,17 +71,18 @@ class Screen {
         </section>
         <footer>made with love by franlol</footer>
         `);
-        const playAgain = document.getElementById("game-over-button-restart");
-        const mainMenu = document.getElementById("game-over-button-splash");
+        const playAgain =   document.getElementById("game-over-button-restart");
+        const mainMenu =    document.getElementById("game-over-button-splash");
 
         playAgain.addEventListener("click", this.gameScreen);
         mainMenu.addEventListener("click", this.splashScreen);
     }
 
     canvasConstruct = (canvasId) => {
-        canvasId.height = this.canvasHeight;
-        canvasId.width = this.canvasWidth;
+        canvasId.height =   this.canvasHeight;
+        canvasId.width =    this.canvasWidth;
 
-        const game = new Game(canvasId);
+        this.game = new Game(canvasId);
+        this.game.startGame();
     }
 }

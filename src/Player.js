@@ -2,8 +2,8 @@
 
 class Player extends Character {
 
-    constructor() {
-
+    constructor(canvas) {
+        super(canvas);
     }
 
 }
