@@ -2,8 +2,8 @@
 
 class EnemyBullet extends Bullet {
 
-    constructor(canvas, enemyPlayer) {
-        super(canvas, enemyPlayer);
+    constructor(canvas, player) {
+        super(canvas, player);
         // this.x = player.x;                   //SUPER
         // this.y = player.y;                   //SUPER
         // this.sizeX = 8;                      //SUPER
@@ -18,12 +18,12 @@ class EnemyBullet extends Bullet {
     }
 
     update() {
-        // console.log(this)
-        this.y += 8;
+        // console.log(this.player.game.enemyBulletsSpeed)
+        this.y += this.player.game.enemyBulletsSpeed;
         if (this.y - this.sizeY >= this.canvas.height) {
             console.log("enemy bullet out")
             this.outOfCanvas = true;
         }
     }
-
+    
 }
