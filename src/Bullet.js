@@ -2,6 +2,8 @@
 
 class Bullet extends Character {
 
-    constructor();
+    constructor() {
+
+    }
     
 }
