@@ -3,8 +3,8 @@
 class Screen {
 
     constructor() {
-        this.canvasWidth = 300;
-        this.canvasHeight = 300;
+        this.canvasWidth = 400;
+        this.canvasHeight = 600;
         this.game;
     }
 
@@ -41,7 +41,6 @@ class Screen {
         const screen = this.buildDom(`
         <section class="game-section">
             <ul>
-                <li><h1>Score: </h1></li>
                 <li><button id="game-button-game-over">Game Over</button></li>
                 <li><canvas></canvas></li>
             </ul>
@@ -57,6 +56,41 @@ class Screen {
             this.game.isGameOver = true;
             this.gameOverScreen;
         });
+
+        let keyLeftPushed = false;
+        let keyRightPushed = false;
+        document.addEventListener("keypress", (e) => {
+            switch (e.code) {
+                case "KeyA":
+                    this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
+                    console.log(keyRightPushed)
+                    keyLeftPushed = true;
+                    break;
+                case "KeyD":
+                    this.game.players[0].direction = (keyLeftPushed) ? 0 : 1;
+                    keyRightPushed = true;
+                    break;
+                case "Space":
+                    this.game.players[0].shoot();
+                    this.game.bullets.push(new Bullet(this));
+                    console.log(this.game.bullets);
+                    break;
+            }
+            // console.log(e)
+        });
+        document.addEventListener("keyup", (e) => {
+            switch (e.code) {
+                case "KeyA":
+                    this.game.players[0].direction = (keyRightPushed) ? 1 : 0;
+                    keyLeftPushed = false;
+                    break;
+                case "KeyD":
+                    this.game.players[0].direction = (keyLeftPushed) ? -1 : 0;
+                    keyRightPushed = false;
+                    break;
+            }
+        });
+
     }
 
     gameOverScreen = () => {
@@ -71,18 +105,18 @@ class Screen {
         </section>
         <footer>made with love by franlol</footer>
         `);
-        const playAgain =   document.getElementById("game-over-button-restart");
-        const mainMenu =    document.getElementById("game-over-button-splash");
+        const playAgain = document.getElementById("game-over-button-restart");
+        const mainMenu = document.getElementById("game-over-button-splash");
 
         playAgain.addEventListener("click", this.gameScreen);
         mainMenu.addEventListener("click", this.splashScreen);
     }
 
-    canvasConstruct = (canvasId) => {
-        canvasId.height =   this.canvasHeight;
-        canvasId.width =    this.canvasWidth;
+    canvasConstruct = (newCanvas) => {
+        newCanvas.height = this.canvasHeight;
+        newCanvas.width = this.canvasWidth;
 
-        this.game = new Game(canvasId);
+        this.game = new Game(newCanvas);
         this.game.startGame();
     }
 }

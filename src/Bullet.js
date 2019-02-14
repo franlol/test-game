@@ -1,9 +1,10 @@
 'use strict'
 
-class Bullet extends Character {
+class Bullet {
 
-    constructor() {
-
+    constructor(char) {
+        this.x = char.x;
+        this.y = char.y;
     }
     
 }
