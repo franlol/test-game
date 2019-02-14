@@ -23,11 +23,7 @@ class Character {
         this.x = this.x + (this.speed * this.direction);
     }
 
-    move() {
-        //
-    }
-
-    checkCollisions() {
+    checkCollisions() { //Wall collisions
         if (this.x + this.sizeX >= this.canvas.width) {
             // console.log("out")
             this.x = this.canvas.width - this.sizeX - 1;
@@ -35,7 +31,6 @@ class Character {
         if (this.x <= 0) {
             this.x = 1;
         }
-
     }
 
     shoot() {

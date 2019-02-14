@@ -6,8 +6,15 @@ class Game {
         this.players = [];
         this.enemies = [];
         this.bullets = [];
+        this.enemyBullets = [];
         this.isGameOver = false;
         this.playerLives = 3;
+        
+        //enemies
+        this.maxEnemies = 45;
+        this.enemySpawnProb = 97.2;
+        this.enemyShootProb = 99;
+        this.enemyBulletsSpeed = 8;
 
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
@@ -40,8 +47,8 @@ class Game {
     }
 
     generateEnemies() {
-        if (Math.random() * 100 > 98) {
-            console.log("YES")
+        if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
+            this.enemies.push(new Enemy(this.canvas, this));
         }
     }
 
@@ -50,7 +57,6 @@ class Game {
             player.update();
             player.draw();
             player.checkCollisions();
-            
         });
 
         this.bullets.forEach(function (bullet) {
@@ -63,8 +69,16 @@ class Game {
         }.bind(this));
 
         this.enemies.forEach(function (enemy) {
-            // enemy.update();
-            // enemy.draw();
+            enemy.update();
+            enemy.shoot();
+            enemy.draw();
+            enemy.checkCollisions();
+        });
+
+        this.enemyBullets.forEach(function(enemyBullets) {
+            enemyBullets.update();
+            
+            enemyBullets.draw();
         });
         
         this.generateEnemies();
