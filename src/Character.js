@@ -6,8 +6,8 @@ class Character {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.direction = 0;
-        this.sizeX = 40;
-        this.sizeY = 60;
+        this.sizeX = 60;
+        this.sizeY = 80;
         this.lives = 3;
         this.game = game;
 
@@ -18,7 +18,7 @@ class Character {
     draw() {
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
         var coinImage = new Image();
-        coinImage.src = "../img/player.png";
+        coinImage.src = "./img/player.png";
         this.ctx.drawImage(coinImage, this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY)
     }
 
