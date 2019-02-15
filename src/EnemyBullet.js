@@ -28,7 +28,20 @@ class EnemyBullet extends Bullet {
     }
 
     checkCollisions() {
-        this.inCollision = true;
+        let players = this.player.game.players;
+        players.forEach(function (player) {
+            let conditionIn1 = player.x - (player.sizeX / 2) < this.x - (this.sizeX / 2);
+            let conditionIn2 = player.x + (player.sizeX / 2) > this.x + (this.sizeX / 2);
+            let conditionIn3 = player.y < this.y;
+            let conditionIn4 = player.y + player.sizeY > this.y + this.sizeY;
+
+            if (conditionIn1 && conditionIn2 && conditionIn3 && conditionIn4) {
+                this.inCollision = true;
+                // console.log(this.inCollision);
+                player.loseLife();
+            }
+
+        }.bind(this));
     }
-    
+
 }

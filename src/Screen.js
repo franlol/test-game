@@ -3,7 +3,7 @@
 class Screen {
 
     constructor() {
-        this.canvasWidth = 400;
+        this.canvasWidth = 800;
         this.canvasHeight = 600;
         this.game;
     }
@@ -112,7 +112,7 @@ class Screen {
         newCanvas.height = this.canvasHeight;
         newCanvas.width = this.canvasWidth;
 
-        this.game = new Game(newCanvas);
+        this.game = new Game(newCanvas, this);
         this.game.startGame();
     }
 }

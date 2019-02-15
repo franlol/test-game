@@ -16,7 +16,10 @@ class Character {
     }
 
     draw() {
-        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
+        var coinImage = new Image();
+        coinImage.src = "../img/player.png";
+        this.ctx.drawImage(coinImage, this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY)
     }
 
     update() {
@@ -42,7 +45,13 @@ class Character {
     }
 
     loseLife() {
-        //
+        this.lives--;
+        if (this.lives < 1) {
+            this.game.gameOver();
+            console.log("GAME OVAH!: " + this.lives)
+        } else {
+            console.log("LIVE--: " + this.lives)
+        }
     }
 
     die() {

@@ -2,14 +2,15 @@
 
 class Game {
 
-    constructor(canvas) {
+    constructor(canvas, screen) {
         this.players = [];
         this.enemies = [];
         this.bullets = [];
         this.enemyBullets = [];
+
         this.isGameOver = false;
         this.playerLives = 3;
-        
+
         //enemies
         this.maxEnemies = 10;
         this.enemySpawnProb = 97.2;
@@ -19,11 +20,12 @@ class Game {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.requestAnimationID;
+        this.screen = screen;
     }
 
     startGame() {
         // setTimeout(() => {
-            this.players.push(new Player(this.canvas, this));
+        this.players.push(new Player(this.canvas, this));
         // },5000)
         // console.log(this)
         this.startLoop();
@@ -33,7 +35,7 @@ class Game {
         console.log("OUT of loop");
         // let test = 1;
         const loop = () => {
-            // console.log("in the loopz");
+            console.log("in the loopz");
             this.clearCanvas();
             this.update();
             // this.draw();
@@ -62,12 +64,12 @@ class Game {
         });
 
         this.bullets.forEach(function (bullet) {
+            if (bullet.inCollision) {
+                this.bullets.splice(this.bullets.indexOf(bullet), 1);
+            }
             bullet.update();
             if (bullet.outOfCanvas) {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
-            }
-            if (bullet.inCollision) {
-                this.bullets.splice(this.bullets.indexOf(bullet), 1);
             }
             bullet.draw();
             bullet.checkCollisions();
@@ -83,35 +85,37 @@ class Game {
             enemy.checkCollisions();
         }.bind(this));
 
-        this.enemyBullets.forEach(function(bullet) {
+        this.enemyBullets.forEach(function (bullet) {
             bullet.update();
             if (bullet.outOfCanvas) {
                 this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
             }
-            if (bullet.inCollision) {
-                console.log(bullet)
-            }
             bullet.checkCollisions();
+            if (bullet.inCollision) {
+                this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1);
+            }
             bullet.draw();
         }.bind(this));
 
         this.generateEnemies();
     }
 
-    
+
     draw() {
-        
+
     }
-    
+
     checkCollisions() {
-        
+
     }
-    
+
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    
-    gameOver() {
 
+    gameOver() {
+        this.isGameOver = true;
+        console.log(this)
+        setTimeout(this.screen.gameOverScreen, 3000);
     }
 }
