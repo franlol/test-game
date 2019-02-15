@@ -3,7 +3,7 @@
 class Screen {
 
     constructor() {
-        this.canvasWidth = 800;
+        this.canvasWidth = 600;
         this.canvasHeight = 600;
         this.game;
     }
@@ -40,6 +40,7 @@ class Screen {
     gameScreen = () => {
         const screen = this.buildDom(`
         <section class="game-section">
+            <h1 id="game-title"></h1>
             <ul>
                 <li><button id="game-button-game-over">Game Over</button></li>
                 <li><canvas></canvas></li>
@@ -87,6 +88,11 @@ class Screen {
             }
         });
 
+    }
+
+    gameUpdateTitle = (lives) => {
+        let h1 = document.getElementById("game-title");
+        h1.innerHTML = "Lives: " + lives;
     }
 
     gameOverScreen = () => {

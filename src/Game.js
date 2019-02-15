@@ -21,6 +21,9 @@ class Game {
         this.ctx = canvas.getContext("2d");
         this.requestAnimationID;
         this.screen = screen;
+
+        this.backgroundX = 0;
+        this.backgroundY = 5175;
     }
 
     startGame() {
@@ -37,8 +40,8 @@ class Game {
         const loop = () => {
             console.log("in the loopz");
             this.clearCanvas();
+            this.draw();
             this.update();
-            // this.draw();
             if (this.isGameOver) {
                 window.cancelAnimationFrame(animationFrameID);
                 // } else if (test < 100) {
@@ -49,6 +52,8 @@ class Game {
         }
         const animationFrameID = window.requestAnimationFrame(loop);
     }
+
+
 
     generateEnemies() {
         if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
@@ -64,6 +69,7 @@ class Game {
         });
 
         this.bullets.forEach(function (bullet) {
+            bullet.checkCollisions();
             if (bullet.inCollision) {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1);
             }
@@ -72,7 +78,6 @@ class Game {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
             }
             bullet.draw();
-            bullet.checkCollisions();
         }.bind(this));
 
         this.enemies.forEach(function (enemy) {
@@ -102,11 +107,11 @@ class Game {
 
 
     draw() {
-
-    }
-
-    checkCollisions() {
-
+        var backgroundImage = new Image();
+        backgroundImage.src = "./img/background.jpg";
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.height, 900, 600, 0, 0, 600, 600);
+        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.height, 900, 600, 0, 0, 600, 600);
+        this.backgroundY -= 1;
     }
 
     clearCanvas() {

@@ -8,7 +8,6 @@ class EnemyBullet extends Bullet {
         // this.y = player.y;                   //SUPER
         // this.sizeX = 8;                      //SUPER
         // this.sizeY = 10;                     //SUPER
-        // this.distance = 5;                   //SUPER
         // this.velocity = 8;                   //SUPER
         // this.outOfCanvas = false;            //SUPER
         // this.inCollision = false;            //SUPER

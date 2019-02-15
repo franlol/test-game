@@ -6,8 +6,9 @@ class Bullet {
         this.x = player.x;
         this.y = player.y;
         this.sizeX = 8;
-        this.sizeY = 8;
-        this.distance = 5;
+        this.sizeY = 20;
+
+        this.strenght = 5;
         this.velocity = 8;
         this.outOfCanvas = false;
         this.inCollision = false;
@@ -19,6 +20,9 @@ class Bullet {
     
     draw() {
         this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+        // var playerImage = new Image();
+        // playerImage.src = "./img/laser.png";
+        // this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY)
     }
 
     update() {

@@ -6,8 +6,8 @@ class Enemy extends Character {
         super(canvas, game);
         this.direction = Math.floor((Math.random() * 1) - 0.5) ? -1 : 1;         //random left or right
         this.turnSpeed = 0.1;
-        this.sizeX = 35;
-        this.sizeY = 35;
+        this.sizeX = 60;
+        this.sizeY = 80;
         this.x = this.generateX();
         this.y = 10;
         this.outOfCanvas = false;
