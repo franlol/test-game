@@ -11,7 +11,7 @@ class Game {
         this.playerLives = 3;
         
         //enemies
-        this.maxEnemies = 45;
+        this.maxEnemies = 10;
         this.enemySpawnProb = 97.2;
         this.enemyShootProb = 99;
         this.enemyBulletsSpeed = 8;
@@ -22,7 +22,9 @@ class Game {
     }
 
     startGame() {
-        this.players.push(new Player(this.canvas, this));
+        // setTimeout(() => {
+            this.players.push(new Player(this.canvas, this));
+        // },5000)
         // console.log(this)
         this.startLoop();
     }
@@ -60,27 +62,39 @@ class Game {
         });
 
         this.bullets.forEach(function (bullet) {
+            bullet.update();
             if (bullet.outOfCanvas) {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
             }
-            bullet.update();
+            if (bullet.inCollision) {
+                this.bullets.splice(this.bullets.indexOf(bullet), 1);
+            }
             bullet.draw();
-            
+            bullet.checkCollisions();
         }.bind(this));
 
         this.enemies.forEach(function (enemy) {
             enemy.update();
+            if (enemy.outOfCanvas) {  //Borro el Enemy que está fuera del canvas, para que el GC la borre de la ram
+                this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            }
             enemy.shoot();
             enemy.draw();
             enemy.checkCollisions();
-        });
+        }.bind(this));
 
-        this.enemyBullets.forEach(function(enemyBullets) {
-            enemyBullets.update();
-            
-            enemyBullets.draw();
-        });
-        
+        this.enemyBullets.forEach(function(bullet) {
+            bullet.update();
+            if (bullet.outOfCanvas) {
+                this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
+            }
+            if (bullet.inCollision) {
+                console.log(bullet)
+            }
+            bullet.checkCollisions();
+            bullet.draw();
+        }.bind(this));
+
         this.generateEnemies();
     }
 

@@ -11,6 +11,7 @@ class EnemyBullet extends Bullet {
         // this.distance = 5;                   //SUPER
         // this.velocity = 8;                   //SUPER
         // this.outOfCanvas = false;            //SUPER
+        // this.inCollision = false;            //SUPER
 
         // this.canvas = canvas;                //SUPER
         // this.ctx = canvas.getContext("2d");  //SUPER
@@ -21,9 +22,13 @@ class EnemyBullet extends Bullet {
         // console.log(this.player.game.enemyBulletsSpeed)
         this.y += this.player.game.enemyBulletsSpeed;
         if (this.y - this.sizeY >= this.canvas.height) {
-            console.log("enemy bullet out")
             this.outOfCanvas = true;
         }
+        // console.log(this.player.game.enemyBullets.length);
+    }
+
+    checkCollisions() {
+        this.inCollision = true;
     }
     
 }

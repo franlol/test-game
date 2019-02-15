@@ -11,12 +11,12 @@ class Character {
         this.lives = 3;
         this.game = game;
 
-        this.x = (canvas.width / 2) - (this.sizeX / 2);
-        this.y = canvas.height - 80;
+        this.x = (canvas.width / 2);
+        this.y = canvas.height - 40;
     }
 
     draw() {
-        this.ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
+        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
     }
 
     update() {

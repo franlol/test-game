@@ -10,6 +10,7 @@ class Enemy extends Character {
         this.sizeY = 35;
         this.x = this.generateX();
         this.y = 10;
+        this.outOfCanvas = false;
         // this.canvas = canvas;                            //Super
         // this.ctx = this.canvas.getContext("2d");         //Super
         // this.lives = 3;                                  //Super
@@ -23,8 +24,11 @@ class Enemy extends Character {
     }
 
     update() {
-        this.y += 0.4;
+        this.y += 2;
         this.move();
+        if (this.y > this.canvas.height) {
+            this.outOfCanvas = true;
+        }
     }
 
     move() {
