@@ -7,6 +7,8 @@ class Game {
         this.enemies = [];
         this.bullets = [];
         this.enemyBullets = [];
+        this.hits = [];
+        this.explosions = [];
 
         this.isGameOver = false;
         this.playerLives = 3;
@@ -72,6 +74,7 @@ class Game {
             bullet.checkCollisions();
             if (bullet.inCollision) {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1);
+                this.hits.push(new Hit(bullet));
             }
             bullet.update();
             if (bullet.outOfCanvas) {
@@ -102,6 +105,11 @@ class Game {
             bullet.draw();
         }.bind(this));
 
+        this.hits.forEach(function(hit) {
+            hit.draw();
+        });
+
+
         this.generateEnemies();
     }
 
@@ -110,7 +118,7 @@ class Game {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
         //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
 
         // let backgroundImage = new Image();
         // backgroundImage.src = "./img/Ship.ai";

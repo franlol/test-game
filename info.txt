@@ -20,3 +20,4 @@ ENHANCEMENTS:
 
 Optimization to do:
 * Al generar un new Char/player/enemy no hace falta pasarle el canvas, ya que con Game es suficiente(game incluye canvas)
+* moverse en todas las direcciones?

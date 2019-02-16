@@ -13,6 +13,7 @@ class Character {
 
         this.isInmune = false;
         this.inmuneBlink = true;
+        
         this.x = (canvas.width / 2);
         this.y = canvas.height - 80;
     }

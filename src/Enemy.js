@@ -42,7 +42,6 @@ class Enemy extends Character {
     //@override
     checkCollisions() { //Wall collisions && change direction
         if (this.x + (this.sizeX / 2) >= this.canvas.width) {
-            // console.log("out")
             this.x = this.canvas.width - this.sizeX - 1;
             this.direction = -1;
         }
