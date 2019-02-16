@@ -106,16 +106,16 @@ There are 2 differents bullets; 1 shooteds by enemies and another 1 shooteds by 
 
 - [x] Screen transitions.
 - [x] Create canvas
-- [ ] Game loop
-- [ ] Add player
-- [ ] Make player moving
-- [ ] Add enemies
-- [ ] Make enemies moving
-- [ ] Player shoot
-- [ ] Player bullets collisions with enemies
-- [ ] Enemies shoot
-- [ ] Enemies bullets collisions with player
-- [ ] Backlog.
+- [x] Game loop
+- [x] Add player
+- [x] Make player moving
+- [x] Add enemies
+- [x] Make enemies moving
+- [x] Player shoot
+- [x] Player bullets collisions with enemies
+- [x] Enemies shoot
+- [x] Enemies bullets collisions with player
+- [] Backlog.
 
 ## Links
 

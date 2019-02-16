@@ -43,7 +43,7 @@ class Screen {
             <h1 id="game-title"></h1>
             <ul>
                 <li><button id="game-button-game-over">Game Over</button></li>
-                <li><canvas></canvas></li>
+                <li><canvas>Your browser does not support canvas.</canvas></li>
             </ul>
         </section>
         <footer>made with love by franlol</footer>
@@ -52,6 +52,8 @@ class Screen {
         const button = document.getElementById("game-button-game-over");
 
         this.canvasConstruct(canvasId);
+
+        this.gameUpdateTitle(this.game.playerLives); //se hace aqui, pq hasta que no se construye el canvas, no recivimos el objeto Game
 
         button.addEventListener("click", () => {
             this.game.isGameOver = true;

@@ -17,6 +17,14 @@ class EnemyBullet extends Bullet {
         // this.player = player;                //SUPER
     }
 
+    draw() {
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+
+        var playerImage = new Image();
+        playerImage.src = "./img/Effects/Bullet/OrangeSpin__000.png";
+        this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY)
+    }
+
     update() {
         // console.log(this.player.game.enemyBulletsSpeed)
         this.y += this.player.game.enemyBulletsSpeed;

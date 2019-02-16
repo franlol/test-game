@@ -91,13 +91,13 @@ class Game {
         }.bind(this));
 
         this.enemyBullets.forEach(function (bullet) {
-            bullet.update();
-            if (bullet.outOfCanvas) {
-                this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
-            }
             bullet.checkCollisions();
             if (bullet.inCollision) {
                 this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1);
+            }
+            bullet.update();
+            if (bullet.outOfCanvas) {
+                this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1); //Borro la bullet que está fuera del canvas, para que el GC la borre de la ram
             }
             bullet.draw();
         }.bind(this));
@@ -109,8 +109,32 @@ class Game {
     draw() {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.height, 900, 600, 0, 0, 600, 600);
-        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.height, 900, 600, 0, 0, 600, 600);
+        //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+
+        // let backgroundImage = new Image();
+        // backgroundImage.src = "./img/Ship.ai";
+
+        // let cutFromX = 282,
+        //     cutFromY = 112,
+        //     cutWidth = 291,
+        //     cutHeight = 315,
+        //     canvasStartX = 20,
+        //     canvasStartY = 20,
+        //     canvasWidth = 120,
+        //     canvasHeight = 100;
+
+        // this.ctx.drawImage(backgroundImage,
+        //     cutFromX,
+        //     cutFromY,
+        //     cutWidth,
+        //     cutHeight,
+        //     canvasStartX,
+        //     canvasStartY,
+        //     canvasWidth,
+        //     canvasHeight
+        // );
+
         this.backgroundY -= 1;
     }
 

@@ -1,0 +1,22 @@
+ENHANCEMENTS:
+
+- player is inmune for 2 secs after die
+- enemies does not attak when leaving screen. (canvas height -~ 300px)
+- collisions are 'explosions'
+- h1 show lives
+- enemies appears from 0 - enemy.sizeY
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+
+
+
+
+
+Optimization to do:
+* Al generar un new Char/player/enemy no hace falta pasarle el canvas, ya que con Game es suficiente(game incluye canvas)
