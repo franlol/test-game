@@ -40,7 +40,7 @@ class Game {
         console.log("OUT of loop");
         // let test = 1;
         const loop = () => {
-            console.log("in the loopz");
+            // console.log("in the loopz");
             this.clearCanvas();
             this.draw();
             this.update();
@@ -97,6 +97,7 @@ class Game {
             bullet.checkCollisions();
             if (bullet.inCollision) {
                 this.enemyBullets.splice(this.enemyBullets.indexOf(bullet), 1);
+                this.hits.push(new Hit(bullet));
             }
             bullet.update();
             if (bullet.outOfCanvas) {
@@ -105,9 +106,14 @@ class Game {
             bullet.draw();
         }.bind(this));
 
-        this.hits.forEach(function(hit) {
-            hit.draw();
-        });
+        this.hits.forEach(function (hit) {
+            if (hit.hitFinished) {
+                this.hits.splice(this.hits.indexOf(hit), 1);
+            } else {
+                hit.draw();
+            }
+            // console.log(this.hits)
+        }.bind(this));
 
 
         this.generateEnemies();
@@ -118,32 +124,8 @@ class Game {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
         //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
-
-        // let backgroundImage = new Image();
-        // backgroundImage.src = "./img/Ship.ai";
-
-        // let cutFromX = 282,
-        //     cutFromY = 112,
-        //     cutWidth = 291,
-        //     cutHeight = 315,
-        //     canvasStartX = 20,
-        //     canvasStartY = 20,
-        //     canvasWidth = 120,
-        //     canvasHeight = 100;
-
-        // this.ctx.drawImage(backgroundImage,
-        //     cutFromX,
-        //     cutFromY,
-        //     cutWidth,
-        //     cutHeight,
-        //     canvasStartX,
-        //     canvasStartY,
-        //     canvasWidth,
-        //     canvasHeight
-        // );
-
-        this.backgroundY -= 1;
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        this.backgroundY -= 0.4;
     }
 
     clearCanvas() {

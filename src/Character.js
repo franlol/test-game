@@ -13,15 +13,16 @@ class Character {
 
         this.isInmune = false;
         this.inmuneBlink = true;
-        
+
+        this.health = 100;
         this.x = (canvas.width / 2);
         this.y = canvas.height - 80;
     }
 
     draw() {
-        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
         // this.ctx.fillRect(this.x , this.y, 20, 20);
-        
+
         let backgroundImage = new Image();
         backgroundImage.src = "./img/Player/blue-evo-0.png"; //387 x 354 pixels
         // backgroundImage.src = "./img/player/red-evo-2.png"; //x619 y486
@@ -53,6 +54,15 @@ class Character {
                 canvasHeight
             );
         }
+        //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
+        let percent = (this.sizeX * this.health) / 100;
+
+        this.ctx.fillStyle = "green";
+        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y + (this.sizeY / 2) + 10, percent, 10);
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeRect(this.x - (this.sizeX / 2), this.y + (this.sizeY / 2) + 10, this.sizeX, 10);
+        this.ctx.fillStyle = "black";
     }
 
     update() {
@@ -61,7 +71,6 @@ class Character {
 
     checkCollisions() { //Wall collisions
         if (this.x + this.sizeX / 2 >= this.canvas.width) {
-            console.log("out")
             this.x = this.canvas.width - (this.sizeX / 2) - 1;
         }
         if (this.x - (this.sizeX / 2) <= 0) {
@@ -81,22 +90,29 @@ class Character {
         }, 2000);
     }
 
-    loseLife() {
+    getDamage(damage) {
         if (!this.isInmune) {
-            this.lives--;
-            if (this.lives < 1) {
-                this.game.gameOver();
-                console.log("GAME OVAH!: " + this.lives)
-            } else {
-                console.log("LIVE--: " + this.lives)
-                this.inmune();
+            this.health = (this.health - damage <= 0) ? 0 : this.health - damage;
+            if (this.health <= 0) {
+                this.loseLife();
             }
-            this.game.screen.gameUpdateTitle(this.lives);
         }
     }
 
-    die() {
-//
+    loseLife() {
+        this.lives--;
+
+        if (this.lives < 1) {
+            this.game.gameOver();
+            console.log("GAME OVAH!: " + this.lives)
+        } else {
+            console.log("LIVE--: " + this.lives)
+            this.inmune();
+        }
+
+        this.health = 100;
+        this.game.screen.gameUpdateTitle(this.lives);
     }
+
 
 }

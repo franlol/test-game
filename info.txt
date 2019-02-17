@@ -2,12 +2,11 @@ ENHANCEMENTS:
 
 - player is inmune for 2 secs after die
 - enemies does not attak when leaving screen. (canvas height -~ 300px)
-- collisions are 'explosions'
 - h1 show lives
 - enemies appears from 0 - enemy.sizeY
-- 
-- 
-- 
+- Health bars (pro)
+- bullets generate aura when hits
+- when someone dies, a explosion is generated
 - 
 - 
 - 

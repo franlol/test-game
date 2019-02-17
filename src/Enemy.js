@@ -53,7 +53,7 @@ class Enemy extends Character {
 
     shoot() {
         if ((Math.random() * 100 > this.game.enemyShootProb) && (this.y < this.canvas.height - 250)) {
-            console.log("SHOT AT "+this.y)
+            // console.log("SHOT AT " + this.y)
             this.game.enemyBullets.push(new EnemyBullet(this.canvas, this));
         }
     }
@@ -83,8 +83,8 @@ class Enemy extends Character {
             canvasWidth,
             canvasHeight
         );
-
     }
+
 
 
 
