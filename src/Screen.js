@@ -6,6 +6,10 @@ class Screen {
         this.canvasWidth = 600;
         this.canvasHeight = 600;
         this.game;
+
+        this.keyboardBug = true;
+        this.spaceShip = "orange";
+        this.difficulty = "med";
     }
 
     buildDom = (html) => {
@@ -20,10 +24,17 @@ class Screen {
             <ul>
                 <li>Enter your name:</li>
                 <li><input type="text"></li>
+                <li>DIFFICULTY:
+                    <label id="radio-low">Low <input id="diff-low" ${this.difficulty == "low" ? "checked" : ""} type="radio" name="difficult"></label>
+                    <label id="radio-med">Med <input id="diff-med" ${this.difficulty == "med" ? "checked" : ""} type="radio" name="difficult"></label>
+                    <label id="radio-hard">Hard <input id="diff-hard" ${this.difficulty == "hard" ? "checked" : ""} type="radio" name="difficult"></label>
+                </li>
                 <li>
-                    <label id="radio-low">Low <input id="diff-low" type="radio"></label>
-                    <label id="radio-med">Med <input id="diff-med" checked type="radio"></label>
-                    <label id="radio-hard">Hard <input id="diff-hard" type="radio"></label>
+                    <form>SPACE-SHIP: 
+                    <label id="red-ship">Red <input ${this.spaceShip == "red" ? "checked" : ""} id="red-ship" checked type="radio" name="ship-theme"></label>
+                        <label id="ship-blue">Blue <input ${this.spaceShip == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
+                        <label id="orange-ship">Orange <input ${this.spaceShip == "orange" ? "checked" : ""} id="orange-ship" type="radio" name="ship-theme"></label>
+                    </form>
                 </li>
                 <li><button id="splash-button-start">START</button></li>
                 <li><button>Start as Developer</button></li>
@@ -38,6 +49,7 @@ class Screen {
     }
 
     gameScreen = () => {
+
         const screen = this.buildDom(`
         <section class="game-section">
             <h1 id="game-title"></h1>
@@ -48,11 +60,11 @@ class Screen {
         </section>
         <footer>made with love by franlol</footer>
         `);
+
         const canvasId = document.querySelector("canvas")
         const button = document.getElementById("game-button-game-over");
 
         this.canvasConstruct(canvasId);
-        this.gameUpdateTitle(this.game.playerLives); //se hace aqui, pq hasta que no se construye el canvas, no recivimos el objeto Game
 
         button.addEventListener("click", () => {
             this.game.isGameOver = true;
@@ -61,39 +73,41 @@ class Screen {
 
         let keyLeftPushed = false;
         let keyRightPushed = false;
-        document.addEventListener("keypress", (e) => {
-            if (this.game.players.length > 0) {
-                switch (e.code) {
-                    case "KeyA":
-                        this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
-                        keyLeftPushed = true;
-                        break;
-                    case "KeyD":
-                        this.game.players[0].direction = (keyLeftPushed) ? 0 : 1;
-                        keyRightPushed = true;
-                        break;
-                    case "Space":
-                        this.game.players[0].shoot();
-                        break;
+        if (this.keyboardBug) {
+            let keypress = document.addEventListener("keypress", (e) => {
+                if (this.game.players.length > 0) {
+                    console.log("LOL?");
+                    switch (e.code) {
+                        case "KeyA":
+                            this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
+                            keyLeftPushed = true;
+                            break;
+                        case "KeyD":
+                            this.game.players[0].direction = (keyLeftPushed) ? 0 : 1;
+                            keyRightPushed = true;
+                            break;
+                        case "Space":
+                            this.game.players[0].shoot();
+                            break;
+                    }
                 }
-            }
-        });
-        document.addEventListener("keyup", (e) => {
-            if (this.game.players.length > 0) {
-                switch (e.code) {
-                    case "KeyA":
-                        this.game.players[0].direction = (keyRightPushed) ? 1 : 0;
-                        keyLeftPushed = false;
-                        break;
-                    case "KeyD":
-                        this.game.players[0].direction = (keyLeftPushed) ? -1 : 0;
-                        keyRightPushed = false;
-                        break;
+            });
+            const keyup = document.addEventListener("keyup", (e) => {
+                if (this.game.players.length > 0) {
+                    switch (e.code) {
+                        case "KeyA":
+                            this.game.players[0].direction = (keyRightPushed) ? 1 : 0;
+                            keyLeftPushed = false;
+                            break;
+                        case "KeyD":
+                            this.game.players[0].direction = (keyLeftPushed) ? -1 : 0;
+                            keyRightPushed = false;
+                            break;
+                    }
                 }
-            }
-        });
-
-
+            });
+            this.keyboardBug = false;
+        }
 
     }
 
@@ -117,7 +131,7 @@ class Screen {
         const playAgain = document.getElementById("game-over-button-restart");
         const mainMenu = document.getElementById("game-over-button-splash");
 
-        playAgain.addEventListener("click", function() {
+        playAgain.addEventListener("click", function () {
             this.gameScreen();
         }.bind(this));
         mainMenu.addEventListener("click", this.splashScreen);
@@ -126,7 +140,8 @@ class Screen {
     canvasConstruct = (newCanvas) => {
         newCanvas.height = this.canvasHeight;
         newCanvas.width = this.canvasWidth;
-
+        this.canvas = newCanvas;
+        
         this.game = new Game(newCanvas, this);
         this.game.startGame();
     }

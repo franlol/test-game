@@ -20,7 +20,6 @@ class Bullet {
 
     draw() {
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
-
         var playerImage = new Image();
         playerImage.src = "./img/Effects/Bullet/BlueSpin__000.png";
         this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
@@ -48,7 +47,6 @@ class Bullet {
                     this.player.score += enemy.scorePoints;
                     enemies.splice(enemies.indexOf(enemy), 1);
                 }
-
             }
 
         }.bind(this));

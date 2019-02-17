@@ -25,7 +25,6 @@ class Game {
         //screen config
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
-        this.requestAnimationID;
         this.screen = screen;
 
         //bckground config
@@ -34,26 +33,18 @@ class Game {
     }
 
     startGame() {
-        // setTimeout(() => {
         this.players.push(new Player(this.canvas, this));
-        // },5000)
-        // console.log(this)
         this.startLoop();
     }
 
     startLoop() {
-        console.log("OUT of loop");
-        // let test = 1;
         const loop = () => {
-            console.log("in the loopz");
             this.clearCanvas();
             this.draw();
             this.update();
             if (this.isGameOver) {
                 window.cancelAnimationFrame(animationFrameID);
-                // } else if (test < 100) {
             } else {
-                // test++;
                 window.requestAnimationFrame(loop);
             }
         }
@@ -76,7 +67,6 @@ class Game {
         this.bullets.forEach(function (bullet) {
             bullet.checkCollisions();
             if (bullet.inCollision) {
-                console.log(bullet.strenght)
                 this.hits.push(new Hit(bullet));
                 this.bullets.splice(this.bullets.indexOf(bullet), 1);
             }
@@ -168,5 +158,6 @@ class Game {
             this.screen.gameOverScreen();
         }.bind(this), 1000);
     }
+
 
 }

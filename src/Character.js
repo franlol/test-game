@@ -106,14 +106,12 @@ class Character {
         if (this.lifes < 1) {
             this.game.explosions.push(new Explosion(this));
             this.game.gameOver(this);
-            console.log("GAME OVAH!: " + this.lifes)
         } else {
-            console.log("LIVE--: "+ this.lifes)
             this.inmune();
         }
 
         this.health = 100;
-        this.game.screen.gameUpdateTitle(this.lifes);
+        // this.game.screen.gameUpdateTitle(this.lifes);
     }
 
 
