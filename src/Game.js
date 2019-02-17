@@ -13,7 +13,8 @@ class Game {
 
         //game status
         this.isGameOver = false;
-        this.playerLives = 3;
+        this.playerLifes = 1;
+        this.deadPlayerScore = 0;
 
         //enemies config
         this.maxEnemies = 10;
@@ -44,7 +45,7 @@ class Game {
         console.log("OUT of loop");
         // let test = 1;
         const loop = () => {
-            // console.log("in the loopz");
+            console.log("in the loopz");
             this.clearCanvas();
             this.draw();
             this.update();
@@ -59,8 +60,6 @@ class Game {
         const animationFrameID = window.requestAnimationFrame(loop);
     }
 
-
-
     generateEnemies() {
         if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
             this.enemies.push(new Enemy(this.canvas, this));
@@ -68,7 +67,6 @@ class Game {
     }
 
     update() {
-        console.log(this.explosions)
         this.players.forEach(function (player) {
             player.update();
             player.draw();
@@ -78,8 +76,9 @@ class Game {
         this.bullets.forEach(function (bullet) {
             bullet.checkCollisions();
             if (bullet.inCollision) {
-                this.bullets.splice(this.bullets.indexOf(bullet), 1);
+                console.log(bullet.strenght)
                 this.hits.push(new Hit(bullet));
+                this.bullets.splice(this.bullets.indexOf(bullet), 1);
             }
             bullet.update();
             if (bullet.outOfCanvas) {
@@ -119,7 +118,7 @@ class Game {
             }
         }.bind(this));
 
-        this.explosions.forEach(function(explosion) {
+        this.explosions.forEach(function (explosion) {
             if (explosion.explosionFinished) {
                 this.explosions.splice(this.explosions.indexOf(explosion), 1);
             } else {
@@ -128,24 +127,46 @@ class Game {
         }.bind(this))
 
         this.generateEnemies();
+        this.updateInfo(this.players[0]);
     }
-
 
     draw() {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
         //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
         this.backgroundY -= 0.4;
+    }
+
+    updateInfo(player) {
+        if (player !== undefined) {
+            let heart = new Image();
+            heart.src = "./img/Items/heart.png"; //200 x 185 pixels
+
+            this.ctx.fillStyle = "black";
+            this.ctx.font = "24px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("00:45", (this.screen.canvasWidth / 2) - 50, 30);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Score: ${player !== undefined ? player.score : this.deadPlayerScore}`, 20, 70);
+            for (let i = player.lifes, x = 20; i > 0; i--) {
+                this.ctx.drawImage(heart, 0, 0, 200, 185, x, 80, 24, 22);
+                x += 30;
+            }
+            this.ctx.fillStyle = "black";
+        }
     }
 
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    gameOver() {
-        this.isGameOver = true;
-        console.log(this)
-        setTimeout(this.screen.gameOverScreen, 3000);
+    gameOver(player) { //player que ha muerto, para escalarlo a 2 players
+        this.players.splice(this.players.indexOf(player), 1);
+        let gameOverTimeoutId = setTimeout(function () {
+            this.isGameOver = true;
+            this.screen.gameOverScreen();
+        }.bind(this), 1000);
     }
+
 }

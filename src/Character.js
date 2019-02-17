@@ -8,12 +8,13 @@ class Character {
         this.direction = 0;
         this.sizeX = 90;
         this.sizeY = 80;
-        this.lives = 3;
         this.game = game;
 
         this.isInmune = false;
         this.inmuneBlink = true;
 
+        this.lifes = game.playerLifes;
+        this.score = 0;
         this.health = 100;
         this.x = (canvas.width / 2);
         this.y = canvas.height - 80;
@@ -100,18 +101,19 @@ class Character {
     }
 
     loseLife() {
-        this.lives--;
+        this.lifes--;
 
-        if (this.lives < 1) {
-            this.game.gameOver();
-            console.log("GAME OVAH!: " + this.lives)
+        if (this.lifes < 1) {
+            this.game.explosions.push(new Explosion(this));
+            this.game.gameOver(this);
+            console.log("GAME OVAH!: " + this.lifes)
         } else {
-            console.log("LIVE--: " + this.lives)
+            console.log("LIVE--: "+ this.lifes)
             this.inmune();
         }
 
         this.health = 100;
-        this.game.screen.gameUpdateTitle(this.lives);
+        this.game.screen.gameUpdateTitle(this.lifes);
     }
 
 

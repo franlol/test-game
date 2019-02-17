@@ -52,7 +52,6 @@ class Screen {
         const button = document.getElementById("game-button-game-over");
 
         this.canvasConstruct(canvasId);
-
         this.gameUpdateTitle(this.game.playerLives); //se hace aqui, pq hasta que no se construye el canvas, no recivimos el objeto Game
 
         button.addEventListener("click", () => {
@@ -63,32 +62,38 @@ class Screen {
         let keyLeftPushed = false;
         let keyRightPushed = false;
         document.addEventListener("keypress", (e) => {
-            switch (e.code) {
-                case "KeyA":
-                    this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
-                    keyLeftPushed = true;
-                    break;
-                case "KeyD":
-                    this.game.players[0].direction = (keyLeftPushed) ? 0 : 1;
-                    keyRightPushed = true;
-                    break;
-                case "Space":
-                    this.game.players[0].shoot();
-                    break;
+            if (this.game.players.length > 0) {
+                switch (e.code) {
+                    case "KeyA":
+                        this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
+                        keyLeftPushed = true;
+                        break;
+                    case "KeyD":
+                        this.game.players[0].direction = (keyLeftPushed) ? 0 : 1;
+                        keyRightPushed = true;
+                        break;
+                    case "Space":
+                        this.game.players[0].shoot();
+                        break;
+                }
             }
         });
         document.addEventListener("keyup", (e) => {
-            switch (e.code) {
-                case "KeyA":
-                    this.game.players[0].direction = (keyRightPushed) ? 1 : 0;
-                    keyLeftPushed = false;
-                    break;
-                case "KeyD":
-                    this.game.players[0].direction = (keyLeftPushed) ? -1 : 0;
-                    keyRightPushed = false;
-                    break;
+            if (this.game.players.length > 0) {
+                switch (e.code) {
+                    case "KeyA":
+                        this.game.players[0].direction = (keyRightPushed) ? 1 : 0;
+                        keyLeftPushed = false;
+                        break;
+                    case "KeyD":
+                        this.game.players[0].direction = (keyLeftPushed) ? -1 : 0;
+                        keyRightPushed = false;
+                        break;
+                }
             }
         });
+
+
 
     }
 
@@ -112,7 +117,9 @@ class Screen {
         const playAgain = document.getElementById("game-over-button-restart");
         const mainMenu = document.getElementById("game-over-button-splash");
 
-        playAgain.addEventListener("click", this.gameScreen);
+        playAgain.addEventListener("click", function() {
+            this.gameScreen();
+        }.bind(this));
         mainMenu.addEventListener("click", this.splashScreen);
     }
 

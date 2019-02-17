@@ -6,15 +6,25 @@ ENHANCEMENTS:
 - enemies appears from 0 - enemy.sizeY
 - Health bars (pro)
 - bullets generate aura when hits
-- when someone dies, a explosion is generated
+- when enemy dies, a explosion is generated
+- when player dies, a explosion is generated.
+- Show info in screen
+- Score system
+- Show actual lifes
 - 
-- 
-- 
-- 
-- 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
 
-
-
+A veces las balas hacen mas de su strengh WTF?
+Diferent enemies.
 
 
 Optimization to do:

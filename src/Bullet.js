@@ -8,7 +8,7 @@ class Bullet {
         this.sizeX = 10;
         this.sizeY = 24;
 
-        this.strenght = 50;
+        this.strenght = 40;
         this.velocity = 8;
         this.outOfCanvas = false;
         this.inCollision = false;
@@ -19,7 +19,7 @@ class Bullet {
     }
 
     draw() {
-        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
 
         var playerImage = new Image();
         playerImage.src = "./img/Effects/Bullet/BlueSpin__000.png";
@@ -45,6 +45,7 @@ class Bullet {
                 this.inCollision = true;
                 enemy.getDamage(this.strenght);
                 if (enemy.health <= 0) {
+                    this.player.score += enemy.scorePoints;
                     enemies.splice(enemies.indexOf(enemy), 1);
                 }
 

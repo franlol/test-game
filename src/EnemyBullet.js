@@ -5,7 +5,7 @@ class EnemyBullet extends Bullet {
     constructor(canvas, player) {
         super(canvas, player);
 
-        this.strenght = 20;
+        this.strenght = 40;
 
         // this.x = player.x;                   //SUPER
         // this.y = player.y;                   //SUPER
@@ -21,7 +21,7 @@ class EnemyBullet extends Bullet {
     }
 
     draw() {
-        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
 
         var playerImage = new Image();
         playerImage.src = "./img/Effects/Bullet/OrangeSpin__000.png";

@@ -11,6 +11,7 @@ class Enemy extends Character {
         this.x = this.generateX();
         this.y = -this.sizeY;
         this.outOfCanvas = false;
+        this.scorePoints = 50;
         // this.canvas = canvas;                            //Super
         // this.ctx = this.canvas.getContext("2d");         //Super
         // this.lives = 3;                                  //Super
@@ -59,16 +60,17 @@ class Enemy extends Character {
     }
 
     draw() {
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
+        
         //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
         let percent = (this.sizeX * this.health) / 100;
         this.ctx.fillStyle = "red";
         this.ctx.fillRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
-        this.ctx.strokeStyle = "black";
+        this.ctx.strokeStyle = "white";
         this.ctx.lineWidth = 2;
         this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
         this.ctx.fillStyle = "black";
 
-        this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
 
         let backgroundImage = new Image();
         backgroundImage.src = "./img/Enemy/test.png";
