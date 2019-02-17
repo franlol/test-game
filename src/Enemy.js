@@ -59,6 +59,15 @@ class Enemy extends Character {
     }
 
     draw() {
+        //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
+        let percent = (this.sizeX * this.health) / 100;
+        this.ctx.fillStyle = "red";
+        this.ctx.fillRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
+        this.ctx.fillStyle = "black";
+
         this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
 
         let backgroundImage = new Image();
@@ -85,7 +94,13 @@ class Enemy extends Character {
         );
     }
 
-
+    getDamage(damage) {
+        this.health = (this.health - damage <= 0) ? 0 : this.health - damage;
+        if (this.health <= 0) {
+            this.outOfCanvas = true; //Cuando un enemigo muere, hago como si estuviera fuera del canvas para eliminarlo.
+            this.game.explosions.push(new Explosion(this));
+        }
+    }
 
 
 }

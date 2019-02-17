@@ -3,6 +3,7 @@
 class Game {
 
     constructor(canvas, screen) {
+        //objects
         this.players = [];
         this.enemies = [];
         this.bullets = [];
@@ -10,20 +11,23 @@ class Game {
         this.hits = [];
         this.explosions = [];
 
+        //game status
         this.isGameOver = false;
         this.playerLives = 3;
 
-        //enemies
+        //enemies config
         this.maxEnemies = 10;
         this.enemySpawnProb = 97.2;
         this.enemyShootProb = 99;
         this.enemyBulletsSpeed = 8;
 
+        //screen config
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.requestAnimationID;
         this.screen = screen;
 
+        //bckground config
         this.backgroundX = 0;
         this.backgroundY = 5175;
     }
@@ -64,6 +68,7 @@ class Game {
     }
 
     update() {
+        console.log(this.explosions)
         this.players.forEach(function (player) {
             player.update();
             player.draw();
@@ -112,9 +117,15 @@ class Game {
             } else {
                 hit.draw();
             }
-            // console.log(this.hits)
         }.bind(this));
 
+        this.explosions.forEach(function(explosion) {
+            if (explosion.explosionFinished) {
+                this.explosions.splice(this.explosions.indexOf(explosion), 1);
+            } else {
+                explosion.draw();
+            }
+        }.bind(this))
 
         this.generateEnemies();
     }

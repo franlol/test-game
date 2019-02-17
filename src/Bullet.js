@@ -8,7 +8,7 @@ class Bullet {
         this.sizeX = 10;
         this.sizeY = 24;
 
-        this.strenght = 40;
+        this.strenght = 50;
         this.velocity = 8;
         this.outOfCanvas = false;
         this.inCollision = false;
@@ -43,7 +43,11 @@ class Bullet {
 
             if ((conditionIn1 && conditionIn2 && conditionIn3 && conditionIn4)) {
                 this.inCollision = true;
-                enemies.splice(enemies.indexOf(enemy), 1);
+                enemy.getDamage(this.strenght);
+                if (enemy.health <= 0) {
+                    enemies.splice(enemies.indexOf(enemy), 1);
+                }
+
             }
 
         }.bind(this));
