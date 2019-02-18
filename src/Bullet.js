@@ -16,7 +16,8 @@ class Bullet {
         this.sizeX = stats.sizeX;
         this.sizeY = stats.sizeY;
         this.strength = stats.strength;
-        this.velocity = stats.velocity;
+        this.velocityX = stats.velocityX;
+        this.velocityY = stats.velocityY;
         this.path = stats.path;
 
         this.outOfCanvas = false;
@@ -32,10 +33,12 @@ class Bullet {
         var playerImage = new Image();
         playerImage.src = this.path;
         this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+
     }
 
     update() {
-        this.y -= this.velocity;
+        this.y -= this.velocityY;
+        this.x += this.velocityX;
         if (this.y - (this.sizeY / 2) <= 0) {
             this.outOfCanvas = true;
         }

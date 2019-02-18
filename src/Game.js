@@ -46,7 +46,7 @@ class Game {
 
     startLoop() {
         const loop = () => {
-            console.log("in loop")
+            // console.log("in loop")
             this.clearCanvas();
             this.draw();
             this.update();
@@ -133,7 +133,7 @@ class Game {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
         // drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
         this.backgroundY -= 0.4;
     }
 

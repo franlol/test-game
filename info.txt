@@ -11,8 +11,8 @@ ENHANCEMENTS:
 - Show info in screen
 - Score system
 - Show actual lifes
-- 
--
+- Diferenes evoluciones
+- Cada evolucion tiene sus propios disparos con sus diferentes balas
 -
 -
 -
@@ -23,12 +23,10 @@ ENHANCEMENTS:
 -
 -
 
-A veces las balas hacen mas de su strengh WTF?
 Diferent enemies.
 
 
 Optimization to do:
-* Al generar un new Char/player/enemy no hace falta pasarle el canvas, ya que con Game es suficiente(game incluye canvas)
 * moverse en todas las direcciones?
 
 

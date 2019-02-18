@@ -3,12 +3,12 @@
 class Screen {
 
     constructor() {
-        this.canvasWidth = 1000;
-        this.canvasHeight = 1000;
+        this.canvasWidth = 600;
+        this.canvasHeight = 600;
         this.game;
 
         this.keyboardBug = true;
-        this.theme = "";
+        this.theme = "orange";
         this.difficulty = "med";
     }
 
@@ -34,6 +34,7 @@ class Screen {
                     <label name="red-ship">Red <input ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme"></label>
                         <label name="ship-blue">Green <input ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme"></label>
                         <label name="orange-ship">Orange <input ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme"></label>
+                        <label name="blue-ship">Blue <input ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
                     </form>
                 </li>
                 <li><button id="splash-button-start">START</button></li>

@@ -25,10 +25,8 @@ class Character {
     }
 
     draw() {
-        // console.log(this.theme)
-        console.log(this.theme[this.evo].evo[0].path)
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
-        // console.log(this.theme)
+
         const shipImg = new Image();
         shipImg.src = this.theme[this.evo].evo[0].path;
 
