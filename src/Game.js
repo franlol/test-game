@@ -13,8 +13,11 @@ class Game {
 
         //game status
         this.isGameOver = false;
-        this.playerLifes = 1;
         this.deadPlayerScore = 0;
+
+        //Player config
+        this.playerLifes = 3;
+        this.playerBulletSpeed = 8;
 
         //enemies config
         this.maxEnemies = 10;
@@ -129,7 +132,7 @@ class Game {
     draw() {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
-        //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
+        // drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
         // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
         this.backgroundY -= 0.4;
     }

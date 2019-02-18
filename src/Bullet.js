@@ -2,26 +2,35 @@
 
 class Bullet {
 
-    constructor(canvas, player) {
-        this.x = player.x;
-        this.y = player.y;
-        this.sizeX = 10;
-        this.sizeY = 24;
+    constructor(player, stats) {
+        // x: 0,   //from player x
+        // y: -40, //from player y
+        // sizeX: 10,
+        // sizeY: 24,
+        // strength: 40,
+        // velocity: 8,
+        // path: bulletPath + "BlueSpin__000.png"
 
-        this.strenght = 40;
-        this.velocity = 8;
+        this.x = player.x + stats.x;
+        this.y = player.y + stats.y;
+        this.sizeX = stats.sizeX;
+        this.sizeY = stats.sizeY;
+        this.strength = stats.strength;
+        this.velocity = stats.velocity;
+        this.path = stats.path;
+
         this.outOfCanvas = false;
         this.inCollision = false;
 
-        this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
+        this.canvas = player.canvas;
+        this.ctx = this.canvas.getContext("2d");
         this.player = player;
     }
 
     draw() {
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
         var playerImage = new Image();
-        playerImage.src = "./img/Effects/Bullet/BlueSpin__000.png";
+        playerImage.src = this.path;
         this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
     }
 
@@ -42,7 +51,7 @@ class Bullet {
 
             if ((conditionIn1 && conditionIn2 && conditionIn3 && conditionIn4)) {
                 this.inCollision = true;
-                enemy.getDamage(this.strenght);
+                enemy.getDamage(this.strength);
                 if (enemy.health <= 0) {
                     this.player.score += enemy.scorePoints;
                     enemies.splice(enemies.indexOf(enemy), 1);

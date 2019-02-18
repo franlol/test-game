@@ -2,11 +2,11 @@
 
 class EnemyBullet extends Bullet {
 
-    constructor(canvas, player) {
-        super(canvas, player);
+    constructor(player) {
+        super(player);
 
         this.strenght = 40;
-
+        this.velocity = player.game.enemyBulletsSpeed;
         // this.x = player.x;                   //SUPER
         // this.y = player.y;                   //SUPER
         // this.sizeX = 8;                      //SUPER

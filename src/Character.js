@@ -26,7 +26,7 @@ class Character {
 
     draw() {
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
-        console.log(this.theme)
+        // console.log(this.theme)
         const shipImg = new Image();
         shipImg.src = this.game.theme[0].evo[this.evo].path;
 
@@ -117,7 +117,11 @@ class Character {
     }
 
     shoot() {
-        this.game.bullets.push(new Bullet(this.canvas, this));
+        // this.game.bullets.push(new Bullet(this));
+        let bullets = this.theme[0].evo[this.evo].bullets;
+        for (let i = 0; i < bullets.length; i++) {
+            this.game.bullets.push(new Bullet(this, bullets[i])); //le paso todas las bullets que tiene el tema actual con sus props
+        }
     }
 
     inmune() {
