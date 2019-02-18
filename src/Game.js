@@ -27,19 +27,28 @@ class Game {
 
         //theme
         this.theme;
+        this.bg;
 
         //screen config
         this.screen = screen;
         this.canvas = this.screen.canvas;
         this.ctx = this.screen.canvas.getContext("2d");
 
-        //bckground config
-        this.backgroundX = 0;
-        this.backgroundY = 5175;
+        // bckground config
+        this.backgroundX = 1080;
+        this.backgroundY = 7680;
+        this.meteors = this.backgroundY;
+        this.planets = this.backgroundY;
+        this.stars = this.backgroundY;
+
     }
 
     startGame() {
+        //get themes
         this.theme = Ship.getData(this.screen.theme);
+        this.bg = Background.getData("blue");
+
+        //game logic
         this.players.push(new Player(this));
         this.startLoop();
     }
@@ -130,11 +139,38 @@ class Game {
     }
 
     draw() {
-        var backgroundImage = new Image();
-        backgroundImage.src = "./img/background.jpg";
         // drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
-        this.backgroundY -= 0.4;
+
+        // var backgroundImage = new Image();
+        // backgroundImage.src = "./img/background.jpg";
+        // this.backgroundY -= 4;
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        // 1080 x 1920 pixels
+
+        const backgroundImage = new Image();
+        backgroundImage.src = this.bg.bg;
+        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.4 : this.bg.height;
+
+        const starsImage = new Image();
+        starsImage.src = this.bg.stars;
+        this.stars = (this.stars >= 0) ? this.stars - 1.5 : this.bg.height;
+        console.log(this.stars)
+
+        const planetsImage = new Image();
+        planetsImage.src = this.bg.planets;
+        this.planets = (this.planets >= 0) ? this.planets - 2 : this.bg.height;
+
+        const meteorsImage = new Image();
+        meteorsImage.src = this.bg.meteors;
+        this.meteors = (this.meteors >= 0) ? this.meteors - 1 : this.bg.height;
+
+        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
+        this.ctx.drawImage(starsImage, 0, this.stars - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
+        this.ctx.drawImage(planetsImage, 0, this.planets - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
+        this.ctx.drawImage(meteorsImage, 0, this.meteors - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
+
+
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
     }
 
     updateInfo(player) {

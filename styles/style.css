@@ -6,7 +6,9 @@
     src: url('./fonts/Orbitron/Orbitron-Medium.ttf');
 }
 canvas {
-    border: 1px solid dodgerblue;
+    /* border: 1px solid dodgerblue; */
+    border-bottom: 1px solid dodgerblue;
+    border-top: 1px solid dodgerblue
 }
 li {
     margin-top: 10px;

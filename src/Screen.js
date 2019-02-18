@@ -3,8 +3,8 @@
 class Screen {
 
     constructor() {
-        this.canvasWidth = 600;
-        this.canvasHeight = 600;
+        this.canvasWidth = 1080;
+        this.canvasHeight = innerHeight - 200;
         this.game;
 
         this.keyboardBug = true;
@@ -54,6 +54,8 @@ class Screen {
                 this.theme = "green";
             } else if (document.getElementById("ship-orange").checked) {
                 this.theme = "orange";
+            } else if (document.getElementById("ship-blue").checked) {
+                this.theme = "blue";
             } else {
 
             }
@@ -64,11 +66,11 @@ class Screen {
     gameScreen = () => {
         const screen = this.buildDom(`
         <section class="game-section">
-            <h1 id="game-title"></h1>
-            <ul>
-                <li><button id="game-button-game-over">Game Over</button></li>
+            <!--<h1 id="game-title"></h1>-->
+            <!--<ul>-->
                 <li><canvas>Your browser does not support canvas.</canvas></li>
-            </ul>
+                <li><button id="game-button-game-over">Game Over</button></li>
+            <!--</ul>-->
         </section>
         <footer>made with love by franlol</footer>
         `);

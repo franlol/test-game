@@ -17,7 +17,7 @@ class Character {
 
         //theme
         this.theme = this.game.theme;
-        this.evo = 2;
+        this.evo = 0;
         this.x = (game.canvas.width / 2);
         this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset;
         this.sizeX = this.theme[this.evo].evo[0].sizeX;
@@ -57,41 +57,6 @@ class Character {
             );
         }
 
-        // draw() {
-        //     // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
-        //     // this.ctx.fillRect(this.x , this.y, 20, 20);
-
-        //     let backgroundImage = new Image();
-        //     backgroundImage.src = "./img/Player/blue-evo-0.png"; //387 x 354 pixels
-        //     // backgroundImage.src = "./img/player/red-evo-2.png"; //x619 y486
-        //     // backgroundImage.src = "./img/player.png";
-
-        //     let cutFromX = 0,
-        //         cutFromY = 0,
-        //         cutWidth = 387,
-        //         cutHeight = 354,
-        //         canvasStartX = this.x - (this.sizeX / 2),
-        //         canvasStartY = this.y - (this.sizeY / 2),
-        //         canvasWidth = this.sizeX,
-        //         canvasHeight = this.sizeY;
-
-        //     if (this.isInmune && this.inmuneBlink) {
-        //         this.inmuneBlink = false;
-        //     } else {
-        //         this.inmuneBlink = true;
-        //     }
-        //     if (this.inmuneBlink) {
-        //         this.ctx.drawImage(backgroundImage,
-        //             cutFromX,
-        //             cutFromY,
-        //             cutWidth,
-        //             cutHeight,
-        //             canvasStartX,
-        //             canvasStartY,
-        //             canvasWidth,
-        //             canvasHeight
-        //         );
-        //     }
         //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
         let percent = (this.sizeX * this.health) / 100;
 

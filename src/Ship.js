@@ -599,7 +599,7 @@ class Ship {
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
                             strength: spinDamage,
-                            velocityX: spinSpeedX,
+                            velocityX: spinSpeedX + 0.3,
                             velocityY: spinSpeedY + 1.5,
                             path: blueSpinImg
                         },
@@ -609,7 +609,7 @@ class Ship {
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
                             strength: spinDamage,
-                            velocityX: spinSpeedX,
+                            velocityX: spinSpeedX - 0.3,
                             velocityY: spinSpeedY + 1.5,
                             path: blueSpinImg
                         },
@@ -725,8 +725,8 @@ class Ship {
                         sizeY: 141,
                         yOffset: 110,
                         bullets: [{
-                            x: -68,   //from player x
-                            y: -40, //from player y
+                            x: -79,   //from player x
+                            y: -26, //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
@@ -735,28 +735,28 @@ class Ship {
                             path: blueSpinImg
                         },
                         {
-                            x: -54,     //from player x
-                            y: -40,     //from player y
+                            x: -60,     //from player x
+                            y: -30,     //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
-                            velocityX: spinSpeedX,
+                            velocityX: spinSpeedX + 0.3,
                             velocityY: spinSpeedY,
                             path: blueSpinImg
                         },
                         {
-                            x: 54,   //from player x
-                            y: -40, //from player y
+                            x: 60,   //from player x
+                            y: -30, //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
-                            velocityX: spinSpeedX,
+                            velocityX: spinSpeedX - 0.3,
                             velocityY: spinSpeedY,
                             path: blueSpinImg
                         },
                         {
-                            x: 68,   //from player x
-                            y: -40, //from player y
+                            x: 79,   //from player x
+                            y: -30, //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
@@ -770,38 +770,18 @@ class Ship {
                     name: "orange",
                     evo: [{
                         evo: 3,
-                        path: playerPath + "orange-evo-3.png", //884 x 595 pixels
+                        path: playerPath + "orange-evo-3.png", //751 x 528 pixels
                         cutFromX: 0,
                         cutFromY: 0,
-                        cutWidth: 884,
-                        cutHeight: 595,
+                        cutWidth: 751,
+                        cutHeight: 528,
                         // canvasStartX = this.x - (this.sizeX / 2),
                         // canvasStartY = this.y - (this.sizeY / 2),
                         sizeX: 230,
                         sizeY: 185,
                         yOffset: 130,
                         bullets: [{
-                            x: -48,   //from player x
-                            y: -110, //from player y
-                            sizeX: blastSizeX,
-                            sizeY: blastSizeY,
-                            strength: blastDamage,
-                            velocityX: blastSpeedX,
-                            velocityY: blastSpeedY,
-                            path: blueBlastImg
-                        },
-                        {
-                            x: -36,   //from player x
-                            y: -110, //from player y
-                            sizeX: blastSizeX,
-                            sizeY: blastSizeY,
-                            strength: blastDamage,
-                            velocityX: blastSpeedX,
-                            velocityY: blastSpeedY,
-                            path: blueBlastImg
-                        },
-                        {
-                            x: -2,   //from player x
+                            x: -68,   //from player x
                             y: -100, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
@@ -811,8 +791,8 @@ class Ship {
                             path: blueBlastImg
                         },
                         {
-                            x: 32,   //from player x
-                            y: -110, //from player y
+                            x: -46,   //from player x
+                            y: -100, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
                             strength: blastDamage,
@@ -821,8 +801,38 @@ class Ship {
                             path: blueBlastImg
                         },
                         {
-                            x: 44,   //from player x
-                            y: -110, //from player y
+                            x: -20,   //from player x
+                            y: -100, //from player y
+                            sizeX: spinSizeX,
+                            sizeY: spinSizeY,
+                            strength: blastDamage,
+                            velocityX: spinSpeedX + 0.4,
+                            velocityY: spinSpeedY,
+                            path: blueSpinImg
+                        },
+                        {
+                            x: 22,   //from player x
+                            y: -100, //from player y
+                            sizeX: spinSizeX,
+                            sizeY: spinSizeY,
+                            strength: blastDamage,
+                            velocityX: spinSpeedX - 0.4,
+                            velocityY: spinSpeedY,
+                            path: blueSpinImg
+                        },
+                        {
+                            x: 46,   //from player x
+                            y: -100, //from player y
+                            sizeX: blastSizeX,
+                            sizeY: blastSizeY,
+                            strength: blastDamage,
+                            velocityX: blastSpeedX,
+                            velocityY: blastSpeedY,
+                            path: blueBlastImg
+                        },
+                        {
+                            x: 68,   //from player x
+                            y: -100, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
                             strength: blastDamage,
