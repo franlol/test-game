@@ -8,7 +8,7 @@ class Screen {
         this.game;
 
         this.keyboardBug = true;
-        this.spaceShip = "orange";
+        this.theme = "";
         this.difficulty = "med";
     }
 
@@ -31,9 +31,9 @@ class Screen {
                 </li>
                 <li>
                     <form>SPACE-SHIP: 
-                    <label id="red-ship">Red <input ${this.spaceShip == "red" ? "checked" : ""} id="red-ship" checked type="radio" name="ship-theme"></label>
-                        <label id="ship-blue">Blue <input ${this.spaceShip == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
-                        <label id="orange-ship">Orange <input ${this.spaceShip == "orange" ? "checked" : ""} id="orange-ship" type="radio" name="ship-theme"></label>
+                    <label name="red-ship">Red <input ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme"></label>
+                        <label name="ship-blue">Green <input ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme"></label>
+                        <label name="orange-ship">Orange <input ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme"></label>
                     </form>
                 </li>
                 <li><button id="splash-button-start">START</button></li>
@@ -44,12 +44,23 @@ class Screen {
         </section>
         <footer>made with love by franlol</footer>
         `);
+
         const button = document.getElementById("splash-button-start");
-        button.addEventListener("click", this.gameScreen);
+        button.addEventListener("click", () => {
+            if (document.getElementById("ship-red").checked) {
+                this.theme = "red";
+            } else if (document.getElementById("ship-green").checked) {
+                this.theme = "green";
+            } else if (document.getElementById("ship-orange").checked) {
+                this.theme = "orange";
+            } else {
+
+            }
+            this.gameScreen()
+        });
     }
 
     gameScreen = () => {
-
         const screen = this.buildDom(`
         <section class="game-section">
             <h1 id="game-title"></h1>
@@ -76,7 +87,6 @@ class Screen {
         if (this.keyboardBug) {
             let keypress = document.addEventListener("keypress", (e) => {
                 if (this.game.players.length > 0) {
-                    console.log("LOL?");
                     switch (e.code) {
                         case "KeyA":
                             this.game.players[0].direction = (keyRightPushed) ? 0 : -1;
@@ -108,7 +118,6 @@ class Screen {
             });
             this.keyboardBug = false;
         }
-
     }
 
     gameUpdateTitle = (lives) => {
@@ -137,12 +146,12 @@ class Screen {
         mainMenu.addEventListener("click", this.splashScreen);
     }
 
-    canvasConstruct = (newCanvas) => {
-        newCanvas.height = this.canvasHeight;
-        newCanvas.width = this.canvasWidth;
-        this.canvas = newCanvas;
-        
-        this.game = new Game(newCanvas, this);
+    canvasConstruct = (canvas) => {
+        canvas.height = this.canvasHeight;
+        canvas.width = this.canvasWidth;
+        this.canvas = canvas;
+
+        this.game = new Game(this);
         this.game.startGame();
     }
 }

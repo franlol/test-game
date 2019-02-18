@@ -2,8 +2,11 @@
 
 class Enemy extends Character {
 
-    constructor(canvas, game) {
-        super(canvas, game);
+    constructor(game) {
+        super(game);
+        this.canvas = game.canvas;
+        this.ctx = game.ctx;
+
         this.direction = Math.floor((Math.random() * 1) - 0.5) ? -1 : 1;         //random left or right
         this.turnSpeed = 0.1;
         this.sizeX = 60;

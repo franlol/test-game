@@ -30,3 +30,16 @@ Diferent enemies.
 Optimization to do:
 * Al generar un new Char/player/enemy no hace falta pasarle el canvas, ya que con Game es suficiente(game incluye canvas)
 * moverse en todas las direcciones?
+
+
+******************
+Presentación:
+
+enseñar main screen: explicar que es un juego de naves que puedes elejir 3 personajs.
+Enseñar las 3 naves. Resaltar quue sacan fuego
+enseñar los items: explicar que hay diferentes items y que hacen cada uno
+enseñar item de evolution: explicar que las naves evolucionan el cojer el item.
+Enseñar las evoluciones.
+Explicar los fondos?: explicar que hay 3 tipos de fondo.
+Explicar las explosiones y hits
+Explicar los disparos correspondientes a los disparos.

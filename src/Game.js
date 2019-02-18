@@ -2,7 +2,7 @@
 
 class Game {
 
-    constructor(canvas, screen) {
+    constructor(screen) {
         //objects
         this.players = [];
         this.enemies = [];
@@ -22,10 +22,13 @@ class Game {
         this.enemyShootProb = 99;
         this.enemyBulletsSpeed = 8;
 
+        //theme
+        this.theme;
+
         //screen config
-        this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
         this.screen = screen;
+        this.canvas = this.screen.canvas;
+        this.ctx = this.screen.canvas.getContext("2d");
 
         //bckground config
         this.backgroundX = 0;
@@ -33,16 +36,19 @@ class Game {
     }
 
     startGame() {
-        this.players.push(new Player(this.canvas, this));
+        this.theme = Ship.getData(this.screen.theme);
+        this.players.push(new Player(this));
         this.startLoop();
     }
 
     startLoop() {
         const loop = () => {
+            console.log("in loop")
             this.clearCanvas();
             this.draw();
             this.update();
             if (this.isGameOver) {
+                console.log(this);
                 window.cancelAnimationFrame(animationFrameID);
             } else {
                 window.requestAnimationFrame(loop);
@@ -53,7 +59,7 @@ class Game {
 
     generateEnemies() {
         if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
-            this.enemies.push(new Enemy(this.canvas, this));
+            this.enemies.push(new Enemy(this));
         }
     }
 
@@ -124,7 +130,7 @@ class Game {
         var backgroundImage = new Image();
         backgroundImage.src = "./img/background.jpg";
         //drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-        this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
         this.backgroundY -= 0.4;
     }
 

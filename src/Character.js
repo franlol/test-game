@@ -2,37 +2,38 @@
 
 class Character {
 
-    constructor(canvas, game) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
-        this.direction = 0;
-        this.sizeX = 90;
-        this.sizeY = 80;
+    constructor(game) {
+        this.canvas = game.canvas;
+        this.ctx = game.canvas.getContext("2d");
         this.game = game;
 
-        this.isInmune = false;
-        this.inmuneBlink = true;
-
+        //stats
         this.lifes = game.playerLifes;
         this.score = 0;
         this.health = 100;
-        this.x = (canvas.width / 2);
-        this.y = canvas.height - 80;
+        this.isInmune = false;
+        this.inmuneBlink = true;
+        this.direction = 0;
+
+        //theme
+        this.theme = this.game.theme;
+        this.evo = 0;
+        this.x = (game.canvas.width / 2);
+        this.y = game.canvas.height - this.game.theme[0].evo[this.evo].yOffset;
+        this.sizeX = this.game.theme[0].evo[this.evo].sizeX;
+        this.sizeY = this.game.theme[0].evo[this.evo].sizeY;
     }
 
     draw() {
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
-        // this.ctx.fillRect(this.x , this.y, 20, 20);
+        console.log(this.theme)
+        const shipImg = new Image();
+        shipImg.src = this.game.theme[0].evo[this.evo].path;
 
-        let backgroundImage = new Image();
-        backgroundImage.src = "./img/Player/blue-evo-0.png"; //387 x 354 pixels
-        // backgroundImage.src = "./img/player/red-evo-2.png"; //x619 y486
-        // backgroundImage.src = "./img/player.png";
-
-        let cutFromX = 0,
-            cutFromY = 0,
-            cutWidth = 387,
-            cutHeight = 354,
+        let cutFromX = this.game.theme[0].evo[this.evo].cutFromX,
+            cutFromY = this.game.theme[0].evo[this.evo].cutFromY,
+            cutWidth = this.game.theme[0].evo[this.evo].cutWidth,
+            cutHeight = this.game.theme[0].evo[this.evo].cutHeight,
             canvasStartX = this.x - (this.sizeX / 2),
             canvasStartY = this.y - (this.sizeY / 2),
             canvasWidth = this.sizeX,
@@ -44,7 +45,7 @@ class Character {
             this.inmuneBlink = true;
         }
         if (this.inmuneBlink) {
-            this.ctx.drawImage(backgroundImage,
+            this.ctx.drawImage(shipImg,
                 cutFromX,
                 cutFromY,
                 cutWidth,
@@ -55,6 +56,42 @@ class Character {
                 canvasHeight
             );
         }
+
+        // draw() {
+        //     // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
+        //     // this.ctx.fillRect(this.x , this.y, 20, 20);
+
+        //     let backgroundImage = new Image();
+        //     backgroundImage.src = "./img/Player/blue-evo-0.png"; //387 x 354 pixels
+        //     // backgroundImage.src = "./img/player/red-evo-2.png"; //x619 y486
+        //     // backgroundImage.src = "./img/player.png";
+
+        //     let cutFromX = 0,
+        //         cutFromY = 0,
+        //         cutWidth = 387,
+        //         cutHeight = 354,
+        //         canvasStartX = this.x - (this.sizeX / 2),
+        //         canvasStartY = this.y - (this.sizeY / 2),
+        //         canvasWidth = this.sizeX,
+        //         canvasHeight = this.sizeY;
+
+        //     if (this.isInmune && this.inmuneBlink) {
+        //         this.inmuneBlink = false;
+        //     } else {
+        //         this.inmuneBlink = true;
+        //     }
+        //     if (this.inmuneBlink) {
+        //         this.ctx.drawImage(backgroundImage,
+        //             cutFromX,
+        //             cutFromY,
+        //             cutWidth,
+        //             cutHeight,
+        //             canvasStartX,
+        //             canvasStartY,
+        //             canvasWidth,
+        //             canvasHeight
+        //         );
+        //     }
         //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
         let percent = (this.sizeX * this.health) / 100;
 
@@ -113,6 +150,7 @@ class Character {
         this.health = 100;
         // this.game.screen.gameUpdateTitle(this.lifes);
     }
+
 
 
 }
