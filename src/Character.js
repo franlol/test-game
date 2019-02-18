@@ -17,7 +17,7 @@ class Character {
 
         //theme
         this.theme = this.game.theme;
-        this.evo = 0;
+        this.evo = 1;
         this.x = (game.canvas.width / 2);
         this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset;
         this.sizeX = this.theme[this.evo].evo[0].sizeX;

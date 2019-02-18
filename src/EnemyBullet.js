@@ -2,39 +2,39 @@
 
 class EnemyBullet extends Bullet {
 
-    constructor(player) {
-        super(player);
+    constructor(player, theme) {
+        super(player, theme);
 
-        this.strenght = 40;
         this.velocity = player.game.enemyBulletsSpeed;
-        // this.x = player.x;                   //SUPER
-        // this.y = player.y;                   //SUPER
-        // this.sizeX = 8;                      //SUPER
-        // this.sizeY = 10;                     //SUPER
-        // this.velocity = 8;                   //SUPER
-        // this.outOfCanvas = false;            //SUPER
-        // this.inCollision = false;            //SUPER
+        this.theme = theme;
+        this.strenght = theme.strength;
 
-        // this.canvas = canvas;                //SUPER
-        // this.ctx = canvas.getContext("2d");  //SUPER
-        // this.player = player;                //SUPER
+        // this.sizeX = theme.sizeX;                    //SUPER
+        // this.sizeY = theme.sizeY;                    //SUPER
+        // this.strength = theme.strength;              //SUPER
+        // this.velocityX = theme.velocityX;            //SUPER
+        // this.velocityY = theme.velocityY;            //SUPER
+        // this.path = theme.path;                      //SUPER
+
+        // this.outOfCanvas = false;                    //SUPER
+        // this.inCollision = false;                    //SUPER
+
+        // this.canvas = player.canvas;                 //SUPER
+        // this.ctx = this.canvas.getContext("2d");     //SUPER
+        // this.player = player;                        //SUPER
     }
 
     draw() {
-        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
-
-        var playerImage = new Image();
-        playerImage.src = "./img/Effects/Bullet/OrangeSpin__000.png";
-        this.ctx.drawImage(playerImage, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY)
+        const img = new Image();
+        img.src = this.theme.path;
+        this.ctx.drawImage(img, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY)
     }
 
     update() {
-        // console.log(this.player.game.enemyBulletsSpeed)
         this.y += this.player.game.enemyBulletsSpeed;
         if (this.y - this.sizeY >= this.canvas.height) {
             this.outOfCanvas = true;
         }
-        // console.log(this.player.game.enemyBullets.length);
     }
 
     checkCollisions() {

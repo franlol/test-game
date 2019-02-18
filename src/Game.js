@@ -28,6 +28,7 @@ class Game {
         //theme
         this.theme;
         this.bg;
+        this.enemyShip;
 
         //screen config
         this.screen = screen;
@@ -47,6 +48,7 @@ class Game {
         //get themes
         this.theme = Ship.getData(this.screen.theme);
         this.bg = Background.getData("blue");
+        this.enemyShip = EnemyShip.getData("ufo")
 
         //game logic
         this.players.push(new Player(this));
@@ -71,16 +73,13 @@ class Game {
 
     generateEnemies() {
         if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
-            this.enemies.push(new Enemy(this));
+            let random = Math.floor(Math.random() * this.enemyShip.length);
+            let randomTheme = this.enemyShip[random];
+            this.enemies.push(new Enemy(this, randomTheme));
         }
     }
 
     update() {
-        this.players.forEach(function (player) {
-            player.update();
-            player.draw();
-            player.checkCollisions();
-        });
 
         this.bullets.forEach(function (bullet) {
             bullet.checkCollisions();
@@ -104,6 +103,12 @@ class Game {
             enemy.draw();
             enemy.checkCollisions();
         }.bind(this));
+
+        this.players.forEach(function (player) {
+            player.update();
+            player.draw();
+            player.checkCollisions();
+        });
 
         this.enemyBullets.forEach(function (bullet) {
             bullet.checkCollisions();
@@ -145,24 +150,28 @@ class Game {
         // backgroundImage.src = "./img/background.jpg";
         // this.backgroundY -= 4;
         // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
+        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         // 1080 x 1920 pixels
 
         const backgroundImage = new Image();
         backgroundImage.src = this.bg.bg;
         this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.4 : this.bg.height;
+        // console.log(this.backgroundY)
 
         const starsImage = new Image();
         starsImage.src = this.bg.stars;
-        this.stars = (this.stars >= 0) ? this.stars - 1.5 : this.bg.height;
-        console.log(this.stars)
+        this.stars = (this.stars >= 0) ? this.stars - 1.5 : this.bg.height + this.screen.canvasHeight;
+        // console.log(this.stars)
 
         const planetsImage = new Image();
         planetsImage.src = this.bg.planets;
-        this.planets = (this.planets >= 0) ? this.planets - 2 : this.bg.height;
+        this.planets = (this.planets >= 0) ? this.planets - 2 : this.bg.height + this.screen.canvasHeight;
+        // console.log(this.planets)
 
         const meteorsImage = new Image();
         meteorsImage.src = this.bg.meteors;
-        this.meteors = (this.meteors >= 0) ? this.meteors - 1 : this.bg.height;
+        this.meteors = (this.meteors >= 0) ? this.meteors - 1 : this.bg.height + this.screen.canvasHeight;
+        // console.log(this.meteors)
 
         this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         this.ctx.drawImage(starsImage, 0, this.stars - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
@@ -170,7 +179,6 @@ class Game {
         this.ctx.drawImage(meteorsImage, 0, this.meteors - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
 
 
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
     }
 
     updateInfo(player) {

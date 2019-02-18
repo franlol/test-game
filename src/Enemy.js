@@ -2,37 +2,28 @@
 
 class Enemy extends Character {
 
-    constructor(game) {
+    constructor(game, theme) {
         super(game);
         this.canvas = game.canvas;
         this.ctx = game.ctx;
 
+        this.theme = theme;
+
         this.direction = Math.floor((Math.random() * 1) - 0.5) ? -1 : 1;         //random left or right
         this.turnSpeed = 0.1;
-        this.sizeX = 121;
-        this.sizeY = 131;
+        this.sizeX = this.theme.sizeX;
+        this.sizeY = this.theme.sizeY;
         this.x = this.generateX();
         this.y = -this.sizeY;
+        
         this.outOfCanvas = false;
-        this.scorePoints = 50;
-        // this.canvas = canvas;                            //Super
-        // this.ctx = this.canvas.getContext("2d");         //Super
-        // this.lives = 3;                                  //Super
-        // this.game = game;                                //Super
+        this.scorePoints = this.theme.score;
     }
 
     generateX() {
         let x = Math.random() * (this.canvas.width - this.sizeX) > 0 ? (Math.random() * this.canvas.width) - this.sizeX : 10;
 
         return x;
-    }
-
-    update() {
-        this.y += 2;
-        this.move();
-        if (this.y > this.canvas.height) {
-            this.outOfCanvas = true;
-        }
     }
 
     move() {
@@ -43,28 +34,27 @@ class Enemy extends Character {
         }
     }
 
-    //@override
-    checkCollisions() { //Wall collisions && change direction
-        if (this.x + (this.sizeX / 2) >= this.canvas.width) {
-            this.x = this.canvas.width - this.sizeX - 1;
-            this.direction = -1;
-        }
-        if (this.x - (this.sizeX / 2) <= 0) {
-            this.x = 1 + (this.sizeX / 2);
-            this.direction = 1;
+    update() {
+        this.y += 2;
+        this.move();
+        if (this.y - (this.sizeY / 2) > this.canvas.height) {
+            this.outOfCanvas = true;
         }
     }
 
     shoot() {
-        // if ((Math.random() * 100 > this.game.enemyShootProb) && (this.y < this.canvas.height - 250)) {
-        //     this.game.enemyBullets.push(new EnemyBullet(this));
-        // }
+        if ((Math.random() * 100 > this.game.enemyShootProb) && (this.y < this.canvas.height - 250)) {
+            // this.game.enemyBullets.push(new EnemyBullet(this));
+            const bullets = this.theme.bullets;
+            bullets.forEach(function(bullet) {
+                console.log(bullet)
+                this.game.enemyBullets.push(new EnemyBullet(this, bullet));
+            }.bind(this))
+        }
     }
 
     draw() {
-        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
-        
-        //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
+        //Health Bar
         let percent = (this.sizeX * this.health) / 100;
         this.ctx.fillStyle = "red";
         this.ctx.fillRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
@@ -73,20 +63,20 @@ class Enemy extends Character {
         this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
         this.ctx.fillStyle = "black";
 
+        const shipImg = new Image();
+        shipImg.src = this.theme.path;
 
-        let backgroundImage = new Image();
-        backgroundImage.src = "./img/Enemy/test.png";
-        // 1401 x 1449
-        let cutFromX = 0,
-            cutFromY = 0,
-            cutWidth = 1401,
-            cutHeight = 1449,
+        let cutFromX = this.theme.cutFromX,
+            cutFromY = this.theme.cutFromY,
+            cutWidth = this.theme.cutWidth,
+            cutHeight = this.theme.cutHeight,
             canvasStartX = this.x - (this.sizeX / 2),
             canvasStartY = this.y - (this.sizeY / 2),
             canvasWidth = this.sizeX,
             canvasHeight = this.sizeY;
 
-        this.ctx.drawImage(backgroundImage,
+
+        this.ctx.drawImage(shipImg,
             cutFromX,
             cutFromY,
             cutWidth,
@@ -96,6 +86,40 @@ class Enemy extends Character {
             canvasWidth,
             canvasHeight
         );
+
+        // let backgroundImage = new Image();
+        // backgroundImage.src = "./img/Enemy/test.png";
+        // // 1401 x 1449
+        // let cutFromX = 0,
+        //     cutFromY = 0,
+        //     cutWidth = 1401,
+        //     cutHeight = 1449,
+        //     canvasStartX = this.x - (this.sizeX / 2),
+        //     canvasStartY = this.y - (this.sizeY / 2),
+        //     canvasWidth = this.sizeX,
+        //     canvasHeight = this.sizeY;
+
+        // this.ctx.drawImage(backgroundImage,
+        //     cutFromX,
+        //     cutFromY,
+        //     cutWidth,
+        //     cutHeight,
+        //     canvasStartX,
+        //     canvasStartY,
+        //     canvasWidth,
+        //     canvasHeight
+        // );
+    }
+
+    checkCollisions() { //Wall collisions && change direction
+        if (this.x + (this.sizeX / 2) >= this.canvas.width) {
+            this.x = this.canvas.width - this.sizeX - 1;
+            this.direction = -1;
+        }
+        if (this.x - (this.sizeX / 2) <= 0) {
+            this.x = 1 + (this.sizeX / 2);
+            this.direction = 1;
+        }
     }
 
     getDamage(damage) {

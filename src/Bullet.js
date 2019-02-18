@@ -2,7 +2,7 @@
 
 class Bullet {
 
-    constructor(player, stats) {
+    constructor(player, theme) {
         // x: 0,   //from player x
         // y: -40, //from player y
         // sizeX: 10,
@@ -11,14 +11,14 @@ class Bullet {
         // velocity: 8,
         // path: bulletPath + "BlueSpin__000.png"
 
-        this.x = player.x + stats.x;
-        this.y = player.y + stats.y;
-        this.sizeX = stats.sizeX;
-        this.sizeY = stats.sizeY;
-        this.strength = stats.strength;
-        this.velocityX = stats.velocityX;
-        this.velocityY = stats.velocityY;
-        this.path = stats.path;
+        this.x = player.x + theme.x;
+        this.y = player.y + theme.y;
+        this.sizeX = theme.sizeX;
+        this.sizeY = theme.sizeY;
+        this.strength = theme.strength;
+        this.velocityX = theme.velocityX;
+        this.velocityY = theme.velocityY;
+        this.path = theme.path;
 
         this.outOfCanvas = false;
         this.inCollision = false;
