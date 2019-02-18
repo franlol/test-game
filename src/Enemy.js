@@ -9,8 +9,8 @@ class Enemy extends Character {
 
         this.direction = Math.floor((Math.random() * 1) - 0.5) ? -1 : 1;         //random left or right
         this.turnSpeed = 0.1;
-        this.sizeX = 60;
-        this.sizeY = 60;
+        this.sizeX = 121;
+        this.sizeY = 131;
         this.x = this.generateX();
         this.y = -this.sizeY;
         this.outOfCanvas = false;

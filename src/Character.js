@@ -17,23 +17,25 @@ class Character {
 
         //theme
         this.theme = this.game.theme;
-        this.evo = 0;
+        this.evo = 2;
         this.x = (game.canvas.width / 2);
-        this.y = game.canvas.height - this.game.theme[0].evo[this.evo].yOffset;
-        this.sizeX = this.game.theme[0].evo[this.evo].sizeX;
-        this.sizeY = this.game.theme[0].evo[this.evo].sizeY;
+        this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset;
+        this.sizeX = this.theme[this.evo].evo[0].sizeX;
+        this.sizeY = this.theme[this.evo].evo[0].sizeY;
     }
 
     draw() {
+        // console.log(this.theme)
+        console.log(this.theme[this.evo].evo[0].path)
         // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y - (this.sizeY / 2), this.sizeX, this.sizeY);
         // console.log(this.theme)
         const shipImg = new Image();
-        shipImg.src = this.game.theme[0].evo[this.evo].path;
+        shipImg.src = this.theme[this.evo].evo[0].path;
 
-        let cutFromX = this.game.theme[0].evo[this.evo].cutFromX,
-            cutFromY = this.game.theme[0].evo[this.evo].cutFromY,
-            cutWidth = this.game.theme[0].evo[this.evo].cutWidth,
-            cutHeight = this.game.theme[0].evo[this.evo].cutHeight,
+        let cutFromX = this.theme[this.evo].evo[0].cutFromX,
+            cutFromY = this.theme[this.evo].evo[0].cutFromY,
+            cutWidth = this.theme[this.evo].evo[0].cutWidth,
+            cutHeight = this.theme[this.evo].evo[0].cutHeight,
             canvasStartX = this.x - (this.sizeX / 2),
             canvasStartY = this.y - (this.sizeY / 2),
             canvasWidth = this.sizeX,
@@ -118,7 +120,7 @@ class Character {
 
     shoot() {
         // this.game.bullets.push(new Bullet(this));
-        let bullets = this.theme[0].evo[this.evo].bullets;
+        let bullets = this.theme[this.evo].evo[0].bullets;
         for (let i = 0; i < bullets.length; i++) {
             this.game.bullets.push(new Bullet(this, bullets[i])); //le paso todas las bullets que tiene el tema actual con sus props
         }
