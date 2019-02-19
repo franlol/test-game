@@ -4,8 +4,8 @@ class Explosion {
         this.player = player;
         this.x = player.x;
         this.y = player.y;
-        this.sizeX = player.sizeX * 1.5;
-        this.sizeY = player.sizeY * 1.5;
+        this.sizeX = player.sizeX / 1.3;
+        this.sizeY = player.sizeX / 1.3;
 
         this.counter = 0;
         this.explosionFinished = false;

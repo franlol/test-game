@@ -15,10 +15,10 @@ class Character {
         this.isInmune = false;
         this.inmuneBlink = true;
         this.direction = 0;
+        this.evo = 2;
 
         //theme
         this.theme = this.game.theme;
-        this.evo = 2;
         this.x = (game.canvas.width / 2);
         this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset;
         this.sizeX = this.theme[this.evo].evo[0].sizeX;
@@ -119,6 +119,12 @@ class Character {
 
         this.health = 100;
         // this.game.screen.gameUpdateTitle(this.lifes);
+    }
+
+    getEvo() {
+        if (this.evo < 3) {
+            this.evo++;
+        }
     }
 
 

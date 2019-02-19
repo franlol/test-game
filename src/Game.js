@@ -15,7 +15,7 @@ class Game {
         this.isGameOver = false;
         this.deadPlayerScore = 0;
         this.timerId;
-        this.timer = 120;
+        this.timer = 140;
         this.stage = 1;
         this.stageBoss = false;
 
@@ -143,18 +143,10 @@ class Game {
     }
 
     draw() {
-        // drawImage(image, recortarDesdeX, recortarDesdeY, recorteWidth, recorteHeight, canvasStartX, canvasStartY, canvasWidth, canvasHeight)
-
-        // var backgroundImage = new Image();
-        // backgroundImage.src = "./img/background.jpg";
-        // this.backgroundY -= 4;
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, 600, 600);
-        // this.ctx.drawImage(backgroundImage, 0, this.backgroundY - this.screen.canvasHeight, 900, 600, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
-        // 1080 x 1920 pixels
-
+        console.log(this.backgroundY)
         const backgroundImage = new Image();
         backgroundImage.src = this.bg.bg;
-        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.6 : this.bg.height;
+        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.8 : this.bg.height;
         // console.log(this.backgroundY)
 
         const starsImage = new Image();
@@ -176,7 +168,6 @@ class Game {
         this.ctx.drawImage(starsImage, 0, this.stars - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         this.ctx.drawImage(planetsImage, 0, this.planets - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         this.ctx.drawImage(meteorsImage, 0, this.meteors - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
-
 
     }
 
@@ -212,31 +203,31 @@ class Game {
     }
 
     stageControl() { //this.stageBoss | this.stage = x;
-        if (this.timer <= 120 && this.timer > 100) {
+        if (this.timer <= 140 && this.timer > 120) {
             this.enemyShip = EnemyShip.getData("ufo");
             this.generateEnemies()
         }
-        if (this.timer < 100 && this.timer > 80 && !this.stageBoss) {
+        if (this.timer < 120 && this.timer > 100 && !this.stageBoss) {
             this.enemyShip = EnemyShip.getData("ufoBoss");
             this.stageBoss = true;
             this.generateEnemies(true);
         }
-        if (this.timer < 80 && this.timer > 60) {
+        if (this.timer < 100 && this.timer > 80) {
             this.stageBoss = false;
             this.enemyShip = EnemyShip.getData("alien");
             this.generateEnemies()
         }
-        if (this.timer < 60 && this.timer > 40 && !this.stageBoss) {
+        if (this.timer < 80 && this.timer > 60 && !this.stageBoss) {
             this.enemyShip = EnemyShip.getData("alienBoss");
             this.stageBoss = true;
             this.generateEnemies(true);
         }
-        if (this.timer < 40 && this.timer > 20) {
+        if (this.timer < 60 && this.timer > 40) {
             this.stageBoss = false;
             this.enemyShip = EnemyShip.getData("pirate");
             this.generateEnemies()
         }
-        if (this.timer < 20 && this.timer > 0 && !this.stageBoss) {
+        if (this.timer < 40 && this.timer > 0 && !this.stageBoss) {
             this.enemyShip = EnemyShip.getData("pirateBoss");
             this.stageBoss = true;
             this.generateEnemies(true);
@@ -258,8 +249,6 @@ class Game {
             this.enemies.push(new Enemy(this, randomTheme));
         }
     }
-
-
 
     time(timer) { //122 seconds return 2:02
         let minutes = timer / 60;
