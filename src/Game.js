@@ -27,7 +27,6 @@ class Game {
         this.maxEnemies = 10;
         this.enemySpawnProb = 97.2;
         this.enemyShootProb = 99;
-        this.enemyBossShootProb = 96.5;
         this.enemyBulletsSpeed = 8;
 
         //theme
@@ -214,28 +213,49 @@ class Game {
     }
 
     stageControl() { //this.stageBoss | this.stage = x;
-        if (this.timer <= 120 && this.timer > 116) {
+        if (this.timer <= 120 && this.timer > 100) {
+            this.enemyShip = EnemyShip.getData("ufo");
+            this.generateEnemies()
+        }
+        if (this.timer < 100 && this.timer > 80 && !this.stageBoss) {
+            this.enemyShip = EnemyShip.getData("ufoBoss");
+            this.stageBoss = true;
+            this.generateEnemies(true);
+        }
+        if (this.timer < 80 && this.timer > 60) {
+            this.stageBoss = false;
             this.enemyShip = EnemyShip.getData("alien");
             this.generateEnemies()
         }
-        if (this.timer < 115 && this.timer > 100 && !this.stageBoss) {
+        if (this.timer < 60 && this.timer > 40 && !this.stageBoss) {
             this.enemyShip = EnemyShip.getData("alienBoss");
-            this.generateEnemies(true);
             this.stageBoss = true;
+            this.generateEnemies(true);
+        }
+        if (this.timer < 40 && this.timer > 20) {
+            this.stageBoss = false;
+            this.enemyShip = EnemyShip.getData("pirate");
+            this.generateEnemies()
+        }
+        if (this.timer < 20 && this.timer > 0 && !this.stageBoss) {
+            this.enemyShip = EnemyShip.getData("pirateBoss");
+            this.stageBoss = true;
+            this.generateEnemies(true);
         }
 
     }
 
     generateEnemies(byPass) {
-        if (!byPass) {
+        if (!byPass) { //sin parametro, enemigos random
             if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
                 let random = Math.floor(Math.random() * this.enemyShip.length);
                 let randomTheme = this.enemyShip[random];
                 this.enemies.push(new Enemy(this, randomTheme));
             }
-        } else {
+        } else { //con True, el boss correspondiente con el Theme
             let random = Math.floor(Math.random() * this.enemyShip.length);
             let randomTheme = this.enemyShip[random];
+            console.log(this.enemyShip)
             this.enemies.push(new Enemy(this, randomTheme));
         }
     }

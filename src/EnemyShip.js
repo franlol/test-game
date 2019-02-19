@@ -27,14 +27,14 @@ class EnemyShip {
         const ufoBossShotSpeedY = 8;
         const ufoBossShotSizeX = 35;
         const ufoBossShotSizeY = 35;
-        const ufoBossShot = enemyPath + "UfoBoss/Effects/Shot_02.png";
+        const ufoBossShot = enemyPath + "UfoBoss/Bullets/Shot_02.png";
         //Ufo boss Missile
         const ufoBossMissileDamage = 80;
         const ufoBossMissileSpeedX = 1;
         const ufoBossMissileSpeedY = 14;
         const ufoBossMissileSizeX = 22;
         const ufoBossMissileSizeY = 45;
-        const ufoBossMissile = enemyPath + "UfoBoss/Effects/Missile.png";
+        const ufoBossMissile = enemyPath + "UfoBoss/Bullets/Missile.png";
 
         //Alien Exahaust
         const alienExhaust = enemyPath + "Alien/Bullets/Exhaust_1_002.png";
@@ -57,14 +57,51 @@ class EnemyShip {
         const AlienBossShotSpeedY = 8;
         const AlienBossShotSizeX = 40;
         const AlienBossShotSizeY = 40;
-        const AlienBossShot = enemyPath + "AlienBoss/Effects/Shot_04.png";
-        //AlieAlienoss Missile
+        const AlienBossShot = enemyPath + "AlienBoss/Bullets/Shot_04.png";
+        //Alien Boss Missile
         const AlienBossMissileDamage = 80;
         const AlienBossMissileSpeedX = 1;
         const AlienBossMissileSpeedY = 14;
         const AlienBossMissileSizeX = 20;
         const AlienBossMissileSizeY = 75;
-        const AlienBossMissile = enemyPath + "AlienBoss/Effects/Ship_Exhaust.png";
+        const AlienBossMissile = enemyPath + "AlienBoss/Bullets/Ship_Exhaust.png";
+
+        //Pirate
+        const pirateShotDamage = 50;
+        const pirateShotSpeedX = 0;
+        const pirateShotSpeedY = 8;
+        const pirateShotSizeX = 20;
+        const pirateShotSizeY = 57;
+        const pirateShot = enemyPath + "Pirate/Bullets/Exhaust_2_008.png";
+        //Pirate 
+        const pirateMissileDamage = 80;
+        const pirateMissileSpeedX = 0;
+        const pirateMissileSpeedY = 8;
+        const pirateMissileSizeX = 20;
+        const pirateMissileSizeY = 20;
+        const pirateMissile = enemyPath + "Pirate/Bullets/Fire_Shot_006.png";
+
+        //Pirate boss fireBall
+        const pirateBossShotDamage = 50;
+        const pirateBossShotSpeedX = 0;
+        const pirateBossShotSpeedY = 8;
+        const pirateBossShotSizeX = 40;
+        const pirateBossShotSizeY = 40;
+        const pirateBossShot = enemyPath + "PirateBoss/Bullets/Shot_04.png";
+        //Pirate Boss Shoot
+        const pirateBossShot2Damage = 80;
+        const pirateBossShot2SpeedX = 0;
+        const pirateBossShot2SpeedY = 14;
+        const pirateBossShot2SizeX = 30;
+        const pirateBossShot2SizeY = 57;
+        const pirateBossShot2 = enemyPath + "PirateBoss/Bullets/Shot_02.png";
+        //Pirate Boss Misile
+        const pirateBossMissileDamage = 80;
+        const pirateBossMissileSpeedX = 0;
+        const pirateBossMissileSpeedY = 14;
+        const pirateBossMissileSizeX = 20;
+        const pirateBossMissileSizeY = 57;
+        const pirateBossMissile = enemyPath + "PirateBoss/Bullets/Missile.png";
 
         switch (theme) {
             case "ufo":
@@ -496,7 +533,231 @@ class EnemyShip {
                 }];
 
 
-                
+            case "pirate":
+                return [{
+                    name: "pirate",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Pirate/Ship_01.png", //724 x 1120 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 724,
+                    cutHeight: 1120,
+                    sizeX: 100,
+                    sizeY: 155,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateMissileSizeX,
+                        sizeY: pirateMissileSizeY,
+                        strength: pirateMissileDamage,
+                        velocityX: pirateMissileSpeedX,
+                        velocityY: pirateMissileSpeedY,
+                        path: pirateMissile
+                    }]
+                },
+                {
+                    name: "pirate",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Pirate/Ship_02.png", //370 x 659 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 370,
+                    cutHeight: 659,
+                    sizeX: 100,
+                    sizeY: 178,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateMissileSizeX,
+                        sizeY: pirateMissileSizeY,
+                        strength: pirateMissileDamage,
+                        velocityX: pirateMissileSpeedX,
+                        velocityY: pirateMissileSpeedY,
+                        path: pirateMissile
+                    }]
+                },
+                {
+                    name: "pirate",
+                    health: 300,
+                    score: 50,
+                    path: enemyPath + "Pirate/Ship_03.png", //647 x 676 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 647,
+                    cutHeight: 676,
+                    sizeX: 100,
+                    sizeY: 104,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateMissileSizeX,
+                        sizeY: pirateMissileSizeY,
+                        strength: pirateMissileDamage,
+                        velocityX: pirateMissileSpeedX,
+                        velocityY: pirateMissileSpeedY,
+                        path: pirateMissile
+                    }]
+                },
+                {
+                    name: "pirate",
+                    health: 150,
+                    score: 50,
+                    path: enemyPath + "Pirate/Ship_04.png", //850 x 604 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 850,
+                    cutHeight: 604,
+                    sizeX: 100,
+                    sizeY: 71,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateShotSizeX,
+                        sizeY: pirateShotSizeY,
+                        strength: pirateShotDamage,
+                        velocityX: pirateShotSpeedX,
+                        velocityY: pirateShotSpeedY,
+                        path: pirateShot
+                    }]
+                },
+                {
+                    name: "pirate",
+                    health: 200,
+                    score: 1000,
+                    path: enemyPath + "Pirate/Ship_05.png", //714 x 1044 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 714,
+                    cutHeight: 1044,
+                    sizeX: 85,
+                    sizeY: 124,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateShotSizeX,
+                        sizeY: pirateShotSizeY,
+                        strength: pirateShotDamage,
+                        velocityX: pirateShotSpeedX,
+                        velocityY: pirateShotSpeedY,
+                        path: pirateShot
+                    }]
+                },
+                {
+                    name: "pirate",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Pirate/Ship_06.png", //606 x 836 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 606,
+                    cutHeight: 836,
+                    sizeX: 100,
+                    sizeY: 138,
+                    speedY: 2,
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: pirateShotSizeX,
+                        sizeY: pirateShotSizeY,
+                        strength: pirateShotDamage,
+                        velocityX: pirateShotSpeedX,
+                        velocityY: pirateShotSpeedY,
+                        path: pirateShot
+                    }]
+                }];
+
+
+            case "pirateBoss":
+                return [{
+                    name: "pirate boss",
+                    health: 5000,
+                    score: 50,
+                    path: enemyPath + "PirateBoss/Boss_Full.png", //1080 x 638 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 1080,
+                    cutHeight: 638,
+                    sizeX: 400,
+                    sizeY: 236,
+                    speedY: 0.5,
+                    // yOffset: 110,
+                    bullets: [{
+                        x: -10,     //from player x
+                        y: 120,       //from player y
+                        sizeX: pirateBossMissileSizeX,
+                        sizeY: pirateBossMissileSizeY,
+                        strength: pirateBossMissileDamage,
+                        velocityX: pirateBossMissileSpeedX,
+                        velocityY: pirateBossMissileSpeedY,
+                        path: pirateBossMissile
+                    },
+                    {
+                        x: -65,     //from player x
+                        y: 50,       //from player y
+                        sizeX: pirateBossShotSizeX,
+                        sizeY: pirateBossShotSizeY,
+                        strength: pirateBossShotDamage,
+                        velocityX: pirateBossShotSpeedX - 1,
+                        velocityY: pirateBossShotSpeedY,
+                        path: pirateBossShot
+                    },
+                    {
+                        x: -100,           //from player x
+                        y: 50,         //from player y
+                        sizeX: pirateBossShot2SizeX,
+                        sizeY: pirateBossShot2SizeY,
+                        strength: pirateBossShot2Damage,
+                        velocityX: pirateBossShot2SpeedX - 3,
+                        velocityY: pirateBossShot2SpeedY,
+                        path: pirateBossShot2
+                    },
+                    {
+                        x: 100,         //from player x
+                        y: 50,         //from player y
+                        sizeX: pirateBossShot2SizeX,
+                        sizeY: pirateBossShot2SizeY,
+                        strength: pirateBossShot2Damage,
+                        velocityX: pirateBossShot2SpeedX + 3,
+                        velocityY: pirateBossShot2SpeedY,
+                        path: pirateBossShot2
+                    },
+                    {
+                        x: 65,         //from player x
+                        y: 50,         //from player y
+                        sizeX: pirateBossShotSizeX,
+                        sizeY: pirateBossShotSizeY,
+                        strength: pirateBossShotDamage,
+                        velocityX: pirateBossShotSpeedX + 1,
+                        velocityY: pirateBossShotSpeedY,
+                        path: pirateBossShot
+                    },
+                    {
+                        x: 10,      //from player x
+                        y: 120,       //from player y
+                        sizeX: pirateBossMissileSizeX,
+                        sizeY: pirateBossMissileSizeY,
+                        strength: pirateBossMissileDamage,
+                        velocityX: pirateBossMissileSpeedX,
+                        velocityY: pirateBossMissileSpeedY,
+                        path: pirateBossMissile
+                    }]
+                }];
+
+
+
             default:
                 break;
 

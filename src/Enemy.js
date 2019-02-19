@@ -17,7 +17,7 @@ class Enemy extends Character {
         this.x = this.generateX();
         this.y = -this.sizeY;
         this.speedY = this.theme.speedY;
-        
+
         this.outOfCanvas = false;
         this.scorePoints = this.theme.score;
     }
@@ -46,9 +46,8 @@ class Enemy extends Character {
 
     shoot() {
         if ((Math.random() * 100 > this.game.enemyShootProb) && (this.y < this.canvas.height - 250)) {
-            // this.game.enemyBullets.push(new EnemyBullet(this));
             const bullets = this.theme.bullets;
-            bullets.forEach(function(bullet) {
+            bullets.forEach(function (bullet) {
                 this.game.enemyBullets.push(new EnemyBullet(this, bullet));
             }.bind(this));
         }
