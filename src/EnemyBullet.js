@@ -31,7 +31,8 @@ class EnemyBullet extends Bullet {
     }
 
     update() {
-        this.y += this.player.game.enemyBulletsSpeed;
+        this.y += this.theme.velocityY;
+        this.x += this.theme.velocityX;
         if (this.y - this.sizeY >= this.canvas.height) {
             this.outOfCanvas = true;
         }

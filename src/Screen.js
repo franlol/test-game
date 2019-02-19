@@ -4,7 +4,7 @@ class Screen {
 
     constructor() {
         this.canvasWidth = 1080;
-        this.canvasHeight = innerHeight - 200;
+        this.canvasHeight = innerHeight;
         this.game;
 
         this.keyboardBug = true;

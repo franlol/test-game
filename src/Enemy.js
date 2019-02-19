@@ -9,12 +9,14 @@ class Enemy extends Character {
 
         this.theme = theme;
 
+        this.health = this.theme.health;
         this.direction = Math.floor((Math.random() * 1) - 0.5) ? -1 : 1;         //random left or right
         this.turnSpeed = 0.1;
         this.sizeX = this.theme.sizeX;
         this.sizeY = this.theme.sizeY;
         this.x = this.generateX();
         this.y = -this.sizeY;
+        this.speedY = this.theme.speedY;
         
         this.outOfCanvas = false;
         this.scorePoints = this.theme.score;
@@ -35,7 +37,7 @@ class Enemy extends Character {
     }
 
     update() {
-        this.y += 2;
+        this.y += this.speedY;
         this.move();
         if (this.y - (this.sizeY / 2) > this.canvas.height) {
             this.outOfCanvas = true;
@@ -47,20 +49,22 @@ class Enemy extends Character {
             // this.game.enemyBullets.push(new EnemyBullet(this));
             const bullets = this.theme.bullets;
             bullets.forEach(function(bullet) {
-                console.log(bullet)
                 this.game.enemyBullets.push(new EnemyBullet(this, bullet));
-            }.bind(this))
+            }.bind(this));
         }
     }
 
     draw() {
         //Health Bar
-        let percent = (this.sizeX * this.health) / 100;
+        // let percent = (this.sizeX * this.health) / 100;
+        // currentHealth * 100 / maxHealth;
+        let percent = (this.health / this.theme.health) * this.sizeX;
+
         this.ctx.fillStyle = "red";
         this.ctx.fillRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
         this.ctx.strokeStyle = "white";
         this.ctx.lineWidth = 2;
-        this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
+        this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, this.sizeX - 6, 6);
         this.ctx.fillStyle = "black";
 
         const shipImg = new Image();

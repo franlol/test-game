@@ -14,6 +14,10 @@ class Game {
         //game status
         this.isGameOver = false;
         this.deadPlayerScore = 0;
+        this.timerId;
+        this.timer = 120;
+        this.stage = 1;
+        this.stageBoss = false;
 
         //Player config
         this.playerLifes = 3;
@@ -23,6 +27,7 @@ class Game {
         this.maxEnemies = 10;
         this.enemySpawnProb = 97.2;
         this.enemyShootProb = 99;
+        this.enemyBossShootProb = 96.5;
         this.enemyBulletsSpeed = 8;
 
         //theme
@@ -48,11 +53,14 @@ class Game {
         //get themes
         this.theme = Ship.getData(this.screen.theme);
         this.bg = Background.getData("blue");
-        this.enemyShip = EnemyShip.getData("ufo")
+        // this.enemyShip = EnemyShip.getData("ufo")
 
         //game logic
         this.players.push(new Player(this));
         this.startLoop();
+        this.timerId = setInterval(function () {
+            this.timer--;
+        }.bind(this), 1000);
     }
 
     startLoop() {
@@ -61,6 +69,7 @@ class Game {
             this.clearCanvas();
             this.draw();
             this.update();
+            this.stageControl();
             if (this.isGameOver) {
                 console.log(this);
                 window.cancelAnimationFrame(animationFrameID);
@@ -69,14 +78,6 @@ class Game {
             }
         }
         const animationFrameID = window.requestAnimationFrame(loop);
-    }
-
-    generateEnemies() {
-        if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
-            let random = Math.floor(Math.random() * this.enemyShip.length);
-            let randomTheme = this.enemyShip[random];
-            this.enemies.push(new Enemy(this, randomTheme));
-        }
     }
 
     update() {
@@ -139,7 +140,7 @@ class Game {
             }
         }.bind(this))
 
-        this.generateEnemies();
+        this.stageControl();
         this.updateInfo(this.players[0]);
     }
 
@@ -189,7 +190,7 @@ class Game {
             this.ctx.fillStyle = "black";
             this.ctx.font = "24px Orbitron";
             this.ctx.fillStyle = "yellow";
-            this.ctx.fillText("00:45", (this.screen.canvasWidth / 2) - 50, 30);
+            this.ctx.fillText(this.time(this.timer), (this.screen.canvasWidth / 2) - 50, 30);
             this.ctx.font = "18px Orbitron";
             this.ctx.fillText(`Score: ${player !== undefined ? player.score : this.deadPlayerScore}`, 20, 70);
             for (let i = player.lifes, x = 20; i > 0; i--) {
@@ -212,5 +213,43 @@ class Game {
         }.bind(this), 1000);
     }
 
+    stageControl() { //this.stageBoss | this.stage = x;
+        console.log(this.stageBoss);
+        if (this.timer <= 120 && this.timer > 116) {
+            this.enemyShip = EnemyShip.getData("ufo");
+            this.generateEnemies()
+        }
+        if (this.timer < 115 && this.timer > 100 && !this.stageBoss) {
+            this.enemyShip = EnemyShip.getData("ufoBoss");
+            this.generateEnemies(true);
+            this.stageBoss = true;
+        }
+
+    }
+
+    generateEnemies(byPass) {
+        if (!byPass) {
+            if (Math.random() * 100 > this.enemySpawnProb && this.enemies.length < this.maxEnemies) {
+                let random = Math.floor(Math.random() * this.enemyShip.length);
+                let randomTheme = this.enemyShip[random];
+                this.enemies.push(new Enemy(this, randomTheme));
+            }
+        } else {
+            let random = Math.floor(Math.random() * this.enemyShip.length);
+            let randomTheme = this.enemyShip[random];
+            this.enemies.push(new Enemy(this, randomTheme));
+        }
+    }
+
+
+
+    time(timer) { //122 seconds return 2:02
+        let minutes = timer / 60;
+        let seconds = timer % 60;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        return Math.floor(minutes) + ":" + seconds;
+    }
 
 }

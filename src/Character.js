@@ -10,14 +10,15 @@ class Character {
         //stats
         this.lifes = game.playerLifes;
         this.score = 0;
-        this.health = 100;
+        this.initialHealth = 100;
+        this.health = this.initialHealth;
         this.isInmune = false;
         this.inmuneBlink = true;
         this.direction = 0;
 
         //theme
         this.theme = this.game.theme;
-        this.evo = 1;
+        this.evo = 2;
         this.x = (game.canvas.width / 2);
         this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset;
         this.sizeX = this.theme[this.evo].evo[0].sizeX;
@@ -58,7 +59,7 @@ class Character {
         }
 
         //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
-        let percent = (this.sizeX * this.health) / 100;
+        let percent = (this.health / this.initialHealth) * this.sizeX; //100 es la vida inicial
 
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(this.x - (this.sizeX / 2), this.y + (this.sizeY / 2) + 10, percent, 10);
