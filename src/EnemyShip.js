@@ -6,15 +6,14 @@ class EnemyShip {
         //routes
         const enemyPath = "./img/Enemy/";
 
-        //Exahaust
+        //Ufo Exahaust
         const ufoExhaust = enemyPath + "Ufo/Bullets/Exhaust_1_001.png";
         const ufoExhaustDamage = 40;
         const ufoExhaustSpeedX = 0;
         const ufoExhaustSpeedY = 8;
         const ufoExhaustSizeX = 50;
         const ufoExhaustSizeY = 20;
-
-        //Shot_02
+        //Ufo Shot_02
         const ufoShot = enemyPath + "Ufo/Bullets/Shot_002.png";
         const ufoShotDamage = 50;
         const ufoShotSpeedX = 0;
@@ -29,7 +28,6 @@ class EnemyShip {
         const ufoBossShotSizeX = 35;
         const ufoBossShotSizeY = 35;
         const ufoBossShot = enemyPath + "UfoBoss/Effects/Shot_02.png";
-
         //Ufo boss Missile
         const ufoBossMissileDamage = 80;
         const ufoBossMissileSpeedX = 1;
@@ -37,6 +35,36 @@ class EnemyShip {
         const ufoBossMissileSizeX = 22;
         const ufoBossMissileSizeY = 45;
         const ufoBossMissile = enemyPath + "UfoBoss/Effects/Missile.png";
+
+        //Alien Exahaust
+        const alienExhaust = enemyPath + "Alien/Bullets/Exhaust_1_002.png";
+        const alienExhaustDamage = 40;
+        const alienExhaustSpeedX = 0;
+        const alienExhaustSpeedY = 8;
+        const alienExhaustSizeX = 60;
+        const alienExhaustSizeY = 20;
+        //Alien Shot_02
+        const alienShot = enemyPath + "Alien/Bullets/Exhaust_2_009.png";
+        const alienShotDamage = 50;
+        const alienShotSpeedX = 0;
+        const alienShotSpeedY = 8;
+        const alienShotSizeX = 40;
+        const alienShotSizeY = 40;
+
+        //Alien boss Shoot
+        const AlienBossShotDamage = 50;
+        const AlienBossShotSpeedX = 0;
+        const AlienBossShotSpeedY = 8;
+        const AlienBossShotSizeX = 40;
+        const AlienBossShotSizeY = 40;
+        const AlienBossShot = enemyPath + "AlienBoss/Effects/Shot_04.png";
+        //AlieAlienoss Missile
+        const AlienBossMissileDamage = 80;
+        const AlienBossMissileSpeedX = 1;
+        const AlienBossMissileSpeedY = 14;
+        const AlienBossMissileSizeX = 20;
+        const AlienBossMissileSizeY = 75;
+        const AlienBossMissile = enemyPath + "AlienBoss/Effects/Ship_Exhaust.png";
 
         switch (theme) {
             case "ufo":
@@ -136,7 +164,7 @@ class EnemyShip {
                         path: ufoShot
                     }]
                 },
-                
+
                 {
                     name: "ufo",
                     health: 200,
@@ -189,7 +217,7 @@ class EnemyShip {
 
             case "ufoBoss":
                 return [{
-                    name: "ufo",
+                    name: "ufo boss",
                     health: 5000,
                     score: 50,
                     path: enemyPath + "UfoBoss/Boss_Full.png", //1080 x 1164 pixels
@@ -254,8 +282,224 @@ class EnemyShip {
                 }];
 
 
+            case "alien":
+                return [{
+                    name: "alien",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Alien/Ship_01.png", //813 x 768 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 813,
+                    cutHeight: 768,
+                    sizeX: 100,
+                    sizeY: 94,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienExhaustSizeX,
+                        sizeY: alienExhaustSizeY,
+                        strength: alienExhaustDamage,
+                        velocityX: alienExhaustSpeedX,
+                        velocityY: alienExhaustSpeedY,
+                        path: alienExhaust
+                    }]
+                },
+                {
+                    name: "alien",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Alien/Ship_02.png", //598 x 800 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 598,
+                    cutHeight: 800,
+                    sizeX: 90,
+                    sizeY: 120,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienExhaustSizeX,
+                        sizeY: alienExhaustSizeY,
+                        strength: alienExhaustDamage,
+                        velocityX: alienExhaustSpeedX,
+                        velocityY: alienExhaustSpeedY,
+                        path: alienExhaust
+                    }]
+                },
+                {
+                    name: "alien",
+                    health: 300,
+                    score: 50,
+                    path: enemyPath + "Alien/Ship_03.png", //868 x 698 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 868,
+                    cutHeight: 698,
+                    sizeX: 100,
+                    sizeY: 80,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienExhaustSizeX,
+                        sizeY: alienExhaustSizeY,
+                        strength: alienExhaustDamage,
+                        velocityX: alienExhaustSpeedX,
+                        velocityY: alienExhaustSpeedY,
+                        path: alienExhaust
+                    }]
+                },
+                {
+                    name: "alien",
+                    health: 150,
+                    score: 50,
+                    path: enemyPath + "Alien/Ship_04.png", //1006 x 780 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 1006,
+                    cutHeight: 780,
+                    sizeX: 100,
+                    sizeY: 78,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienShotSizeX,
+                        sizeY: alienShotSizeY,
+                        strength: alienShotDamage,
+                        velocityX: alienShotSpeedX,
+                        velocityY: alienShotSpeedY,
+                        path: alienShot
+                    }]
+                },
+
+                {
+                    name: "alien",
+                    health: 200,
+                    score: 1000,
+                    path: enemyPath + "Alien/Ship_05.png", //834 x 1030 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 834,
+                    cutHeight: 1030,
+                    sizeX: 100,
+                    sizeY: 124,
+                    speedY: 2, //speed in -Y (movement)
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienShotSizeX,
+                        sizeY: alienShotSizeY,
+                        strength: alienShotDamage,
+                        velocityX: alienShotSpeedX,
+                        velocityY: alienShotSpeedY,
+                        path: alienShot
+                    }]
+                },
+                {
+                    name: "alien",
+                    health: 200,
+                    score: 50,
+                    path: enemyPath + "Alien/Ship_06.png", //572 x 800 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 572,
+                    cutHeight: 800,
+                    sizeX: 100,
+                    sizeY: 140,
+                    speedY: 2,
+                    // yOffset: 110,
+                    bullets: [{
+                        x: 0,   //from player x
+                        y: 0, //from player y
+                        sizeX: alienShotSizeX,
+                        sizeY: alienShotSizeY,
+                        strength: alienShotDamage,
+                        velocityX: alienShotSpeedX,
+                        velocityY: alienShotSpeedY,
+                        path: alienShot
+                    }]
+                }];
+
+            case "alienBoss":
+                return [{
+                    name: "alien boss",
+                    health: 5000,
+                    score: 50,
+                    path: enemyPath + "AlienBoss/Boss_Full.png", //1080 x 546 pixels
+                    cutFromX: 0,
+                    cutFromY: 0,
+                    cutWidth: 1080,
+                    cutHeight: 546,
+                    sizeX: 400,
+                    sizeY: 202,
+                    speedY: 0.5,
+                    // yOffset: 110,
+                    bullets: [{
+                        x: -110,     //from player x
+                        y: 50,       //from player y
+                        sizeX: AlienBossShotSizeX,
+                        sizeY: AlienBossShotSizeY,
+                        strength: AlienBossShotDamage,
+                        velocityX: AlienBossShotSpeedX,
+                        velocityY: AlienBossShotSpeedY,
+                        path: AlienBossShot
+                    },
+                    {
+                        x: -15,     //from player x
+                        y: 50,       //from player y
+                        sizeX: AlienBossMissileSizeX,
+                        sizeY: AlienBossMissileSizeY,
+                        strength: AlienBossMissileDamage,
+                        velocityX: AlienBossMissileSpeedX - (AlienBossMissileSpeedX * 3),
+                        velocityY: AlienBossMissileSpeedY,
+                        path: AlienBossMissile
+                    },
+                    {
+                        x: 0,           //from player x
+                        y: 50,         //from player y
+                        sizeX: AlienBossMissileSizeX,
+                        sizeY: AlienBossMissileSizeY,
+                        strength: AlienBossMissileDamage,
+                        velocityX: AlienBossMissileSpeedX - AlienBossMissileSpeedX,
+                        velocityY: AlienBossMissileSpeedY,
+                        path: AlienBossMissile
+                    },
+                    {
+                        x: 15,         //from player x
+                        y: 50,         //from player y
+                        sizeX: AlienBossMissileSizeX,
+                        sizeY: AlienBossMissileSizeY,
+                        strength: AlienBossMissileDamage,
+                        velocityX: AlienBossMissileSpeedX + (AlienBossMissileSpeedX),
+                        velocityY: AlienBossMissileSpeedY,
+                        path: AlienBossMissile
+                    },
+                    {
+                        x: 110,      //from player x
+                        y: 50,       //from player y
+                        sizeX: AlienBossShotSizeX,
+                        sizeY: AlienBossShotSizeY,
+                        strength: AlienBossShotDamage,
+                        velocityX: AlienBossShotSpeedX,
+                        velocityY: AlienBossShotSpeedY,
+                        path: AlienBossShot
+                    }]
+                }];
+
+
+                
             default:
                 break;
+
 
         }
     }

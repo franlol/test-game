@@ -214,13 +214,12 @@ class Game {
     }
 
     stageControl() { //this.stageBoss | this.stage = x;
-        console.log(this.stageBoss);
         if (this.timer <= 120 && this.timer > 116) {
-            this.enemyShip = EnemyShip.getData("ufo");
+            this.enemyShip = EnemyShip.getData("alien");
             this.generateEnemies()
         }
         if (this.timer < 115 && this.timer > 100 && !this.stageBoss) {
-            this.enemyShip = EnemyShip.getData("ufoBoss");
+            this.enemyShip = EnemyShip.getData("alienBoss");
             this.generateEnemies(true);
             this.stageBoss = true;
         }

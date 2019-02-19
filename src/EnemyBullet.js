@@ -25,6 +25,8 @@ class EnemyBullet extends Bullet {
     }
 
     draw() {
+        // this.ctx.fillRect(this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY);
+
         const img = new Image();
         img.src = this.theme.path;
         this.ctx.drawImage(img, this.x - (this.sizeX / 2), this.y, this.sizeX, this.sizeY)
