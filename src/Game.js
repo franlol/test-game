@@ -52,7 +52,6 @@ class Game {
         //get themes
         this.theme = Ship.getData(this.screen.theme);
         this.bg = Background.getData("blue");
-        // this.enemyShip = EnemyShip.getData("ufo")
 
         //game logic
         this.players.push(new Player(this));
@@ -155,7 +154,7 @@ class Game {
 
         const backgroundImage = new Image();
         backgroundImage.src = this.bg.bg;
-        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.4 : this.bg.height;
+        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.6 : this.bg.height;
         // console.log(this.backgroundY)
 
         const starsImage = new Image();

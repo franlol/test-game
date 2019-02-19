@@ -30,7 +30,7 @@ class EnemyShip {
         const ufoBossShot = enemyPath + "UfoBoss/Bullets/Shot_02.png";
         //Ufo boss Missile
         const ufoBossMissileDamage = 80;
-        const ufoBossMissileSpeedX = 1;
+        const ufoBossMissileSpeedX = 0;
         const ufoBossMissileSpeedY = 14;
         const ufoBossMissileSizeX = 22;
         const ufoBossMissileSizeY = 45;
@@ -272,7 +272,7 @@ class EnemyShip {
                         sizeX: ufoBossShotSizeX,
                         sizeY: ufoBossShotSizeY,
                         strength: ufoBossShotDamage,
-                        velocityX: ufoBossShotSpeedX,
+                        velocityX: ufoBossShotSpeedX - 2,
                         velocityY: ufoBossShotSpeedY,
                         path: ufoBossShot
                     },
@@ -282,7 +282,7 @@ class EnemyShip {
                         sizeX: ufoBossMissileSizeX,
                         sizeY: ufoBossMissileSizeY,
                         strength: ufoBossMissileDamage,
-                        velocityX: ufoBossMissileSpeedX - (ufoBossMissileSpeedX * 2),
+                        velocityX: ufoBossMissileSpeedX - 0.8,
                         velocityY: ufoBossMissileSpeedY,
                         path: ufoBossMissile
                     },
@@ -302,7 +302,7 @@ class EnemyShip {
                         sizeX: ufoBossMissileSizeX,
                         sizeY: ufoBossMissileSizeY,
                         strength: ufoBossMissileDamage,
-                        velocityX: ufoBossMissileSpeedX - (ufoBossMissileSpeedX * 2),
+                        velocityX: ufoBossMissileSpeedX + 0.8,
                         velocityY: ufoBossMissileSpeedY,
                         path: ufoBossMissile
                     },
@@ -312,7 +312,7 @@ class EnemyShip {
                         sizeX: ufoBossShotSizeX,
                         sizeY: ufoBossShotSizeY,
                         strength: ufoBossShotDamage,
-                        velocityX: ufoBossShotSpeedX,
+                        velocityX: ufoBossShotSpeedX + 2,
                         velocityY: ufoBossShotSpeedY,
                         path: ufoBossShot
                     }]
