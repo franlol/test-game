@@ -28,7 +28,7 @@ class Game {
         this.playerBulletSpeed = 8;
 
         //enemies config
-        this.maxEnemies = 10;
+        this.maxEnemies = 8;
         this.enemySpawnProb = 97.2;
         this.enemyShootProb = 99;
         this.enemyBulletsSpeed = 8;
@@ -182,7 +182,6 @@ class Game {
         this.ctx.drawImage(starsImage, 0, this.stars - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         this.ctx.drawImage(planetsImage, 0, this.planets - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
         this.ctx.drawImage(meteorsImage, 0, this.meteors - this.screen.canvasHeight, this.backgroundX, this.screen.canvasHeight, 0, 0, this.screen.canvasWidth, this.screen.canvasHeight);
-
     }
 
     updateInfo(player) {
@@ -209,6 +208,7 @@ class Game {
     }
 
     gameOver(player) { //player que ha muerto, para escalarlo a 2 players
+        this.screen.score = this.players[0].score;
         this.players.splice(this.players.indexOf(player), 1);
         let gameOverTimeoutId = setTimeout(function () {
             this.isGameOver = true;

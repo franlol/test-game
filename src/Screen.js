@@ -4,8 +4,11 @@ class Screen {
 
     constructor() {
         this.canvasWidth = 1080;
-        this.canvasHeight = innerHeight - 100;
+        this.canvasHeight = innerHeight - 6;
         this.game;
+
+        this.nickname = "";
+        this.score = 0;
 
         this.keyboardBug = true;
         this.theme = "orange";
@@ -85,6 +88,7 @@ class Screen {
             } else {
 
             }
+            this.nickname = document.querySelector(".input-nickname").value;
             this.gameScreen()
         });
     }
@@ -94,11 +98,10 @@ class Screen {
         <section class="game-section">
             <!--<h1 id="game-title"></h1>-->
             <!--<ul>-->
-                <li><canvas>Your browser does not support canvas.</canvas></li>
-                <li><button id="game-button-game-over">Game Over</button></li>
+                <canvas id ="canvas">Your browser does not support canvas.</canvas>
+                <button id="game-button-game-over">Game Over</button>
             <!--</ul>-->
         </section>
-        <footer>made with love by franlol</footer>
         `);
 
         const canvasId = document.querySelector("canvas")
@@ -107,8 +110,9 @@ class Screen {
         this.canvasConstruct(canvasId);
 
         button.addEventListener("click", () => {
-            this.game.isGameOver = true;
-            this.gameOverScreen;
+            // this.game.isGameOver = true;
+            // this.gameOverScreen;
+            this.game.gameOver(this.game.players[0])
         });
 
         let keyLeftPushed = false;
@@ -159,7 +163,7 @@ class Screen {
         <section class="game-over-section">
             <ul>
                 <li><h1>Game Over</h1></li>
-                <li><h3>Score: 4793</h3></li>
+                <li><h3>GZ ${this.nickname}! Score: ${this.score}</h3></li>
                 <li><button id="game-over-button-restart">Play again!</button></li>
                 <li><button id="game-over-button-splash">Main menu</button></li>
             </ul>

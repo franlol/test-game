@@ -7,13 +7,18 @@
 }
 canvas {
     /* border: 1px solid dodgerblue; */
-    border-bottom: 1px solid dodgerblue;
-    border-top: 1px solid dodgerblue;
+    /* border-bottom: 1px solid dodgerblue; */
+    /* border-top: 1px solid dodgerblue; */
     margin: 0 auto;
+    display: block;
 }
 * {
     background-color: #070707;
     color: #BA01FF;
+}
+
+main {
+    overflow: hidden;
 }
 
 .splash-section {
@@ -21,7 +26,6 @@ canvas {
     width: 960px;
     height: auto;
     /* border: 1px solid dodgerblue; */
-    /* overflow: hidden; */
 }
 
 .splash-section h1 {
@@ -136,6 +140,7 @@ canvas {
 .input-nickname::placeholder {
     color: rgb(186,1,255, 0.3);
     letter-spacing: 3px;
+    font-family: "Orbitron", sans-serif;
 }
 
 .splash-section button {
@@ -149,11 +154,9 @@ canvas {
     font-size: 24px;
     letter-spacing: 5px;
     padding-top: 8px;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
 }
-
-
-
-
 
 .slide:checked {
     background-color: white;
@@ -165,6 +168,6 @@ canvas {
     justify-content: center;
 }
 
-
+/* ----------------- GAME -------------------- */
 
 
