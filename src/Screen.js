@@ -47,6 +47,8 @@ class Screen {
         </section>
         `);
 
+        document.querySelector(".input-nickname").value = this.nickname;
+
         let radioButtons = document.querySelectorAll(".radios");
         let img = document.querySelector(".img-container");
 
@@ -96,11 +98,8 @@ class Screen {
     gameScreen = () => {
         const screen = this.buildDom(`
         <section class="game-section">
-            <!--<h1 id="game-title"></h1>-->
-            <!--<ul>-->
-                <canvas id ="canvas">Your browser does not support canvas.</canvas>
-                <button id="game-button-game-over">Game Over</button>
-            <!--</ul>-->
+            <canvas id ="canvas">Your browser does not support canvas.</canvas>
+            <!--<button id="game-button-game-over">Game Over</button>-->
         </section>
         `);
 
@@ -109,11 +108,11 @@ class Screen {
 
         this.canvasConstruct(canvasId);
 
-        button.addEventListener("click", () => {
-            // this.game.isGameOver = true;
-            // this.gameOverScreen;
-            this.game.gameOver(this.game.players[0])
-        });
+        // button.addEventListener("click", () => {
+        //     // this.game.isGameOver = true;
+        //     // this.gameOverScreen;
+        //     this.game.gameOver(this.game.players[0])
+        // });
 
         let keyLeftPushed = false;
         let keyRightPushed = false;
