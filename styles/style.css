@@ -20,7 +20,8 @@ canvas {
     margin: 0 auto 0;
     width: 960px;
     height: auto;
-    border: 1px solid dodgerblue;
+    /* border: 1px solid dodgerblue; */
+    /* overflow: hidden; */
 }
 
 .splash-section h1 {
@@ -90,33 +91,34 @@ canvas {
 }
 
 .img-container {
+    position: absolute;
     display: flex;
     flex-flow: row nowrap;
-    left: 0;
+    justify-content: center;
+
+    left: calc(+50% - 100px);
     top: 0;
-    position: absolute;
-    /* width: 400%;  */
+    width: 400%; 
     height: 100%;
     transition: left 0.4s;
 }
 
 .splash-section img {
-    flex: 1;
     height: 200px;
     width: 200px;
 }
 
 .slide-red {
-    left: 0;
+    left: calc(50% - 100px);
 }
 .slide-blue {
-    left: -100%;
+    left: calc(-50% - 100px);
 }
 .slide-orange {
-    left: -200%;
+    left: calc(-150% - 100px);
 }
 .slide-green {
-    left: -300%;
+    left: calc(-250% - 100px);
 }
 
 .input-nickname {

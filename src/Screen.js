@@ -29,18 +29,10 @@ class Screen {
             </div>
             <div class="img-wrap">
                 <div class="img-container">
-                    <div class="img">
-                        <img src="./img/Player/red-evo-0.png"/>
-                    </div>
-                    <div class="img">
-                        <img src="./img/Player/blue-evo-0.png"/>
-                    </div>
-                    <div class="img">
-                        <img src="./img/Player/orange-evo-0.png"/>
-                    </div>
-                    <div class="img">
-                        <img src="./img/Player/green-evo-0.png"/>
-                    </div>
+                    <div style="width: 100%"><img width="200" src="./img/Player/red-evo-0.png"></div>
+                    <div style="width: 100%"><img width="200" src="./img/Player/blue-evo-0.png"></div>
+                    <div style="width: 100%"><img width="200" src="./img/Player/orange-evo-0.png"></div>
+                    <div style="width: 100%"><img width="200" src="./img/Player/green-evo-0.png"></div>
                 </div>
             </div>
             <input class="input-nickname" type="text" placeholder="nickname">
@@ -56,16 +48,16 @@ class Screen {
         let img = document.querySelector(".img-container");
 
         radioButtons[0].addEventListener("click", function() {
+            img.classList.add("slide-red");
             img.classList.remove("slide-blue");
             img.classList.remove("slide-orange");
             img.classList.remove("slide-green");
-            img.classList.add("slide-red");
         })
         radioButtons[1].addEventListener("click", function() {
+            img.classList.add("slide-blue");
             img.classList.remove("slide-red");
             img.classList.remove("slide-orange");
             img.classList.remove("slide-green");
-            img.classList.add("slide-blue");
         })
         radioButtons[2].addEventListener("click", function() {
             img.classList.remove("slide-red");
