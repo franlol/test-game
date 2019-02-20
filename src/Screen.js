@@ -22,35 +22,63 @@ class Screen {
         <section class="splash-section">
             <h1>Space LoL</h1>
             <div class="select-container">
-                <div class="select sel-red"></div>
-                <div class="select sel-blue"></div>
-                <div class="select sel-orange"></div>
-                <div class="select sel-green"></div>
+                <input class="radios sel-red" ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme">
+                <input class="radios sel-blue" ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme">
+                <input class="radios sel-orange" ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme">
+                <input class="radios sel-green" ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme">
             </div>
-
-                <!--<li>DIFFICULTY:
-                    <label id="radio-low">Low <input id="diff-low" ${this.difficulty == "low" ? "checked" : ""} type="radio" name="difficult"></label>
-                    <label id="radio-med">Med <input id="diff-med" ${this.difficulty == "med" ? "checked" : ""} type="radio" name="difficult"></label>
-                    <label id="radio-hard">Hard <input id="diff-hard" ${this.difficulty == "hard" ? "checked" : ""} type="radio" name="difficult"></label>
-                </li>-->
-                
-                <!--<form>SPACE-SHIP: 
-                    <label name="red-ship">Red <input ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme"></label>
-                        <label name="ship-blue">Green <input ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme"></label>
-                        <label name="orange-ship">Orange <input ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme"></label>
-                        <label name="blue-ship">Blue <input ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
-                    </form>-->
-                <img src="./img/Player/red-evo-0.png"/>
-                <input type="text" placeholder="nickname">
-                <button id="splash-button-start">START</button>
-            <!--</ul>-->
-
+            <div class="img-wrap">
+                <div class="img-container">
+                    <div class="img">
+                        <img src="./img/Player/red-evo-0.png"/>
+                    </div>
+                    <div class="img">
+                        <img src="./img/Player/blue-evo-0.png"/>
+                    </div>
+                    <div class="img">
+                        <img src="./img/Player/orange-evo-0.png"/>
+                    </div>
+                    <div class="img">
+                        <img src="./img/Player/green-evo-0.png"/>
+                    </div>
+                </div>
+            </div>
+            <input class="input-nickname" type="text" placeholder="nickname">
+            <button id="splash-button-start">START</button>
 
             <footer>
                 <div class="footer-info"><a href="https://github.com/franlol"><i class="fab fa-github-alt"></i></a>&nbsp;&nbsp;<a href="#"><i class="fab fa-paypal"></i></a></div>
             </footer>
         </section>
         `);
+
+        let radioButtons = document.querySelectorAll(".radios");
+        let img = document.querySelector(".img-container");
+
+        radioButtons[0].addEventListener("click", function() {
+            img.classList.remove("slide-blue");
+            img.classList.remove("slide-orange");
+            img.classList.remove("slide-green");
+            img.classList.add("slide-red");
+        })
+        radioButtons[1].addEventListener("click", function() {
+            img.classList.remove("slide-red");
+            img.classList.remove("slide-orange");
+            img.classList.remove("slide-green");
+            img.classList.add("slide-blue");
+        })
+        radioButtons[2].addEventListener("click", function() {
+            img.classList.remove("slide-red");
+            img.classList.remove("slide-orange");
+            img.classList.remove("slide-green");
+            img.classList.add("slide-orange");
+        })
+        radioButtons[3].addEventListener("click", function() {
+            img.classList.remove("slide-blue");
+            img.classList.remove("slide-orange");
+            img.classList.remove("slide-red");
+            img.classList.add("slide-green");
+        })
 
         const button = document.getElementById("splash-button-start");
         button.addEventListener("click", () => {
@@ -164,3 +192,42 @@ class Screen {
         this.game.startGame();
     }
 }
+
+
+// <section class="splash-section">
+// <h1>Space LoL</h1>
+// <div class="select-container">
+//     <input class="radios" ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme">
+//     <input class="radios" ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme">
+//     <input class="radios" ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme">
+//     <input class="radios" ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme">
+// </div>
+//     <!--<li>DIFFICULTY:
+//         <label id="radio-low">Low <input id="diff-low" ${this.difficulty == "low" ? "checked" : ""} type="radio" name="difficult"></label>
+//         <label id="radio-med">Med <input id="diff-med" ${this.difficulty == "med" ? "checked" : ""} type="radio" name="difficult"></label>
+//         <label id="radio-hard">Hard <input id="diff-hard" ${this.difficulty == "hard" ? "checked" : ""} type="radio" name="difficult"></label>
+//     </li>-->
+    
+//     <!--<form>SPACE-SHIP: 
+//             <label name="red-ship">Red <input ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme"></label>
+//             <label name="ship-blue">Green <input ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme"></label>
+//             <label name="orange-ship">Orange <input ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme"></label>
+//             <label name="blue-ship">Blue <input ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
+//         </form>-->
+//     <div class="img-wrap">
+//         <div class="img-container">
+//             <img src="./img/Player/red-evo-0.png"/>
+//             <img src="./img/Player/blue-evo-0.png"/>
+//             <img src="./img/Player/orange-evo-0.png"/>
+//             <img src="./img/Player/green-evo-0.png"/>
+//         </div>
+//     </div>
+//     <input type="text" placeholder="nickname">
+//     <button id="splash-button-start">START</button>
+// <!--</ul>-->
+
+
+// <footer>
+//     <div class="footer-info"><a href="https://github.com/franlol"><i class="fab fa-github-alt"></i></a>&nbsp;&nbsp;<a href="#"><i class="fab fa-paypal"></i></a></div>
+// </footer>
+// </section>
