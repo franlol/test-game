@@ -24,7 +24,6 @@ class Enemy extends Character {
 
     generateX() {
         let x = Math.random() * (this.canvas.width - this.sizeX) > 0 ? (Math.random() * this.canvas.width) - this.sizeX : 10;
-
         return x;
     }
 
@@ -61,7 +60,7 @@ class Enemy extends Character {
 
         this.ctx.fillStyle = "red";
         this.ctx.fillRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, percent - 6, 6);
-        this.ctx.strokeStyle = "white";
+        this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = 2;
         this.ctx.strokeRect(this.x - (this.sizeX / 2) + 3, this.y - (this.sizeY / 2) - 12, this.sizeX - 6, 6);
         this.ctx.fillStyle = "black";

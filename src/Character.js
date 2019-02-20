@@ -15,7 +15,7 @@ class Character {
         this.isInmune = false;
         this.inmuneBlink = true;
         this.direction = 0;
-        this.evo = 2;
+        this.evo = 0;
 
         //theme
         this.theme = this.game.theme;
@@ -59,7 +59,7 @@ class Character {
         }
 
         //regla de 3: Si mi vida es el 100% de la barra, una vida concreta es.... el x% de la barra
-        let percent = (this.health / this.initialHealth) * this.sizeX; //100 es la vida inicial
+        let percent = (this.health / this.initialHealth) * this.sizeX;
 
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(this.x - (this.sizeX / 2), this.y + (this.sizeY / 2) + 10, percent, 10);
@@ -71,6 +71,9 @@ class Character {
 
     update() {
         this.x = this.x + (this.speed * this.direction);
+        this.sizeX = this.theme[this.evo].evo[0].sizeX;
+        this.sizeY = this.theme[this.evo].evo[0].sizeY;
+        this.y = this.game.canvas.height - this.theme[this.evo].evo[0].yOffset
     }
 
     checkCollisions() { //Wall collisions
@@ -119,6 +122,13 @@ class Character {
 
         this.health = 100;
         // this.game.screen.gameUpdateTitle(this.lifes);
+    }
+
+    getLife() {
+        if (this.lifes < 6) {
+            this.lifes++;
+            this.inmune();
+        }
     }
 
     getEvo() {

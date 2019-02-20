@@ -10,6 +10,7 @@ class Game {
         this.enemyBullets = [];
         this.hits = [];
         this.explosions = [];
+        this.bonus = [];
 
         //game status
         this.isGameOver = false;
@@ -18,6 +19,9 @@ class Game {
         this.timer = 140;
         this.stage = 1;
         this.stageBoss = false;
+
+        //game probs
+        this.bonusProb = 99.7;
 
         //Player config
         this.playerLifes = 3;
@@ -138,15 +142,25 @@ class Game {
             }
         }.bind(this))
 
+        this.bonus.forEach(function (bonus) {
+            bonus.checkCollisions();
+            if (bonus.outOfCanvas || bonus.inCollision) {
+                this.bonus.splice(this.bonus[bonus], 1);
+            }
+            bonus.update();
+            bonus.draw();
+        }.bind(this));
+
+
         this.stageControl();
+        this.generateBonus();
         this.updateInfo(this.players[0]);
     }
 
     draw() {
-        console.log(this.backgroundY)
         const backgroundImage = new Image();
         backgroundImage.src = this.bg.bg;
-        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.8 : this.bg.height;
+        this.backgroundY = (this.backgroundY >= 0) ? this.backgroundY - 0.7 : this.bg.height;
         // console.log(this.backgroundY)
 
         const starsImage = new Image();
@@ -181,9 +195,9 @@ class Game {
             this.ctx.fillStyle = "yellow";
             this.ctx.fillText(this.time(this.timer), (this.screen.canvasWidth / 2) - 50, 30);
             this.ctx.font = "18px Orbitron";
-            this.ctx.fillText(`Score: ${player !== undefined ? player.score : this.deadPlayerScore}`, 20, 70);
+            this.ctx.fillText(`Score: ${player !== undefined ? player.score : this.deadPlayerScore}`, 20, 30);
             for (let i = player.lifes, x = 20; i > 0; i--) {
-                this.ctx.drawImage(heart, 0, 0, 200, 185, x, 80, 24, 22);
+                this.ctx.drawImage(heart, 0, 0, 200, 185, x, 40, 24, 22);
                 x += 30;
             }
             this.ctx.fillStyle = "black";
@@ -232,7 +246,19 @@ class Game {
             this.stageBoss = true;
             this.generateEnemies(true);
         }
+        if (this.timer < 40 && this.timer > 0 && this.stageBoss && this.enemies.length == 0) {
+            this.gameOver(this.players[0]);
+        }
+        if (this.timer <= 0) {
+            this.gameOver(this.players[0]);
+        }
+    }
 
+    generateBonus() {
+        const prob = Math.random() * 100;
+        if (prob > this.bonusProb) {
+            this.bonus.push(new Bonus(this));
+        }
     }
 
     generateEnemies(byPass) {
@@ -245,7 +271,6 @@ class Game {
         } else { //con True, el boss correspondiente con el Theme
             let random = Math.floor(Math.random() * this.enemyShip.length);
             let randomTheme = this.enemyShip[random];
-            console.log(this.enemyShip)
             this.enemies.push(new Enemy(this, randomTheme));
         }
     }

@@ -8,8 +8,94 @@
 canvas {
     /* border: 1px solid dodgerblue; */
     border-bottom: 1px solid dodgerblue;
-    border-top: 1px solid dodgerblue
+    border-top: 1px solid dodgerblue;
+    margin: 0 auto;
 }
- * {
-     margin: 0;
- }
+* {
+    background-color: #0f0f0f;
+    color: #ecf0f1;
+}
+
+.splash-section {
+    margin: 0 auto 0;
+    width: 960px;
+    height: auto;
+    border: 1px solid dodgerblue;
+}
+
+.splash-section h1 {
+    margin-bottom: 100px;
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 4px;
+    text-align: center;
+    font-size: 64px;
+}
+
+.select-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.splash-section .select {
+    /* border: 1px solid black; */
+    width: 200px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.sel-red {
+    background-color: rgb(255, 1, 52);
+    box-shadow: 0px 0px 45px 4px rgb(253, 9, 9);
+}
+
+.sel-blue {
+    background-color: rgb(0, 68, 255);
+    box-shadow: 0px 0px 45px 4px rgba(0, 68, 255, 0.89);
+}
+
+.sel-orange {
+    background-color: rgb(255, 238, 0);
+    box-shadow: 0px 0px 45px 4px rgba(255, 238, 0, 0.89);
+}
+
+.sel-green {
+    background-color: rgba(0, 255, 0, 0.705);
+    box-shadow: 0px 0px 45px 4px rgba(0, 255, 0, 0.89);
+}
+
+.splash-section ul {
+    margin-top: 80px;
+}
+
+.splash-section li {
+    list-style-type: none;
+
+}
+
+.splash-section input {
+    display: block;
+    height: 40px;
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24px;
+}
+
+.splash-section button {
+    display: block;
+    height: 60px;
+    width: 220px;
+    margin: 30px auto;
+}
+
+.splash-section img {
+    display: block;
+    height: 200px;
+    margin: 50px auto;
+}
+
+.splash-section footer {
+    display: flex;
+    justify-content: center;
+}

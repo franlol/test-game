@@ -21,29 +21,35 @@ class Screen {
         const screen = this.buildDom(`
         <section class="splash-section">
             <h1>Space LoL</h1>
-            <ul>
-                <li>Enter your name:</li>
-                <li><input type="text"></li>
-                <li>DIFFICULTY:
+            <div class="select-container">
+                <div class="select sel-red"></div>
+                <div class="select sel-blue"></div>
+                <div class="select sel-orange"></div>
+                <div class="select sel-green"></div>
+            </div>
+
+                <!--<li>DIFFICULTY:
                     <label id="radio-low">Low <input id="diff-low" ${this.difficulty == "low" ? "checked" : ""} type="radio" name="difficult"></label>
                     <label id="radio-med">Med <input id="diff-med" ${this.difficulty == "med" ? "checked" : ""} type="radio" name="difficult"></label>
                     <label id="radio-hard">Hard <input id="diff-hard" ${this.difficulty == "hard" ? "checked" : ""} type="radio" name="difficult"></label>
-                </li>
-                <li>
-                    <form>SPACE-SHIP: 
+                </li>-->
+                
+                <!--<form>SPACE-SHIP: 
                     <label name="red-ship">Red <input ${this.theme == "red" ? "checked" : ""} id="ship-red" checked type="radio" name="ship-theme"></label>
                         <label name="ship-blue">Green <input ${this.theme == "green" ? "checked" : ""} id="ship-green" type="radio" name="ship-theme"></label>
                         <label name="orange-ship">Orange <input ${this.theme == "orange" ? "checked" : ""} id="ship-orange" type="radio" name="ship-theme"></label>
                         <label name="blue-ship">Blue <input ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
-                    </form>
-                </li>
-                <li><button id="splash-button-start">START</button></li>
-                <li><button>Start as Developer</button></li>
-                <li><button>Records</button></li>
-                <li><button>HELP</button></li>
-            </ul>
+                    </form>-->
+                <img src="./img/Player/red-evo-0.png"/>
+                <input type="text" placeholder="nickname:">
+                <button id="splash-button-start">START</button>
+            <!--</ul>-->
+
+
+            <footer>
+                <div class="footer-info">made with love by franlol</div>
+            </footer>
         </section>
-        <footer>made with love by franlol</footer>
         `);
 
         const button = document.getElementById("splash-button-start");
