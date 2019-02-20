@@ -41,13 +41,13 @@ class Screen {
                         <label name="blue-ship">Blue <input ${this.theme == "blue" ? "checked" : ""} id="ship-blue" type="radio" name="ship-theme"></label>
                     </form>-->
                 <img src="./img/Player/red-evo-0.png"/>
-                <input type="text" placeholder="nickname:">
+                <input type="text" placeholder="nickname">
                 <button id="splash-button-start">START</button>
             <!--</ul>-->
 
 
             <footer>
-                <div class="footer-info">made with love by franlol</div>
+                <div class="footer-info"><a href="https://github.com/franlol"><i class="fab fa-github-alt"></i></a>&nbsp;&nbsp;<a href="#"><i class="fab fa-paypal"></i></a></div>
             </footer>
         </section>
         `);

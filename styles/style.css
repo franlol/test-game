@@ -12,15 +12,15 @@ canvas {
     margin: 0 auto;
 }
 * {
-    background-color: #0f0f0f;
-    color: #ecf0f1;
+    background-color: #070707;
+    color: #BA01FF;
 }
 
 .splash-section {
     margin: 0 auto 0;
     width: 960px;
     height: auto;
-    border: 1px solid dodgerblue;
+    /* border: 1px solid dodgerblue; */
 }
 
 .splash-section h1 {
@@ -29,6 +29,7 @@ canvas {
     letter-spacing: 4px;
     text-align: center;
     font-size: 64px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 10px #ff00de;
 }
 
 .select-container {
@@ -80,13 +81,28 @@ canvas {
     margin: 0 auto;
     text-align: center;
     font-size: 24px;
+    color: #BA01FF;
+    border: 1px solid #BA01FF;
+    padding-bottom: 0;
+}
+.splash-section input::placeholder {
+    color: rgb(186,1,255, 0.3);
+    letter-spacing: 3px;
+}
+.splash-section input::placeholder-shown {
 }
 
 .splash-section button {
     display: block;
     height: 60px;
     width: 220px;
-    margin: 30px auto;
+    margin: 30px auto 60px;
+    border: 1px solid #BA01FF;
+    box-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #ff00de, 0 0 35px #ff00de, 0 0 10px #ff00de;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 5px;
+    padding-top: 8px;
 }
 
 .splash-section img {
@@ -96,6 +112,7 @@ canvas {
 }
 
 .splash-section footer {
+    font-size: 28px;
     display: flex;
     justify-content: center;
 }
