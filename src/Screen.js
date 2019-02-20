@@ -161,14 +161,15 @@ class Screen {
     gameOverScreen = () => {
         const screen = this.buildDom(`
         <section class="game-over-section">
-            <ul>
-                <li><h1>Game Over</h1></li>
-                <li><h3>GZ ${this.nickname}! Score: ${this.score}</h3></li>
-                <li><button id="game-over-button-restart">Play again!</button></li>
-                <li><button id="game-over-button-splash">Main menu</button></li>
-            </ul>
+            <h1>Game Over</h1>
+            <h3>GZ ${this.nickname}! Score: ${this.score}</h3>
+            <br>
+            <button id="game-over-button-restart">Play again!</button>
+            <button id="game-over-button-splash">Main menu</button>
         </section>
-        <footer>made with love by franlol</footer>
+        <footer>
+            <div class="footer-info"><a href="https://github.com/franlol"><i class="fab fa-github-alt"></i></a>&nbsp;&nbsp;<a href="#"><i class="fab fa-paypal"></i></a></div>
+        </footer>
         `);
         const playAgain = document.getElementById("game-over-button-restart");
         const mainMenu = document.getElementById("game-over-button-splash");
