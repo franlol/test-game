@@ -208,12 +208,15 @@ class Game {
     }
 
     gameOver(player) { //player que ha muerto, para escalarlo a 2 players
-        this.screen.score = this.players[0].score;
-        this.players.splice(this.players.indexOf(player), 1);
-        let gameOverTimeoutId = setTimeout(function () {
-            this.isGameOver = true;
-            this.screen.gameOverScreen();
-        }.bind(this), 1000);
+        console.log(this)
+        if (this.players.length > 0) {
+            this.screen.score = this.players[0].score;
+            let gameOverTimeoutId = setTimeout(function () {
+                this.players.splice(this.players.indexOf(player), 1);
+                this.isGameOver = true;
+                this.screen.gameOverScreen();
+            }.bind(this), 1000);
+        }
     }
 
     stageControl() { //this.stageBoss | this.stage = x;

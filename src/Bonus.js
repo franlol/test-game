@@ -26,6 +26,7 @@ class Bonus {
         return Math.random() * (this.canvas.width - this.sizeX) > 0 ? (Math.random() * this.canvas.width) - this.sizeX : generateX();
     }
 
+    //YES, DO WHILE EXISTS!
     randomPos() {
         var pos;
         do {
