@@ -10,7 +10,7 @@ class Character {
         //stats
         this.lifes = game.playerLifes;
         this.score = 0;
-        this.initialHealth = 100;
+        this.initialHealth = 150;
         this.health = this.initialHealth;
         this.isInmune = false;
         this.inmuneBlink = true;
@@ -119,8 +119,8 @@ class Character {
         } else {
             this.inmune();
         }
+        this.health = this.initialHealth;
 
-        this.health = 100;
         // this.game.screen.gameUpdateTitle(this.lifes);
     }
 

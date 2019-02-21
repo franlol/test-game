@@ -205,7 +205,7 @@ class EnemyShip {
                 {
                     name: "ufo",
                     health: 200,
-                    score: 1000,
+                    score: 200,
                     path: enemyPath + "Ufo/Ship_05.png", //1126 x 822 pixels
                     cutFromX: 0,
                     cutFromY: 0,
