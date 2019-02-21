@@ -24,7 +24,7 @@ class Game {
         this.bonusProb = 99.7;
 
         //Player config
-        this.playerLifes = 3;
+        this.playerLifes = 4;
         this.playerBulletSpeed = 8;
 
         //enemies config
@@ -153,6 +153,7 @@ class Game {
 
 
         this.stageControl();
+        this.textControl();
         this.generateBonus();
         this.updateInfo(this.players[0]);
     }
@@ -192,7 +193,7 @@ class Game {
             this.ctx.fillStyle = "black";
             this.ctx.font = "24px Orbitron";
             this.ctx.fillStyle = "yellow";
-            this.ctx.fillText(this.time(this.timer), (this.screen.canvasWidth / 2) - 50, 30);
+            this.ctx.fillText(this.time(this.timer), (this.screen.canvasWidth / 2) - 30, 30);
             this.ctx.font = "18px Orbitron";
             this.ctx.fillText(`Score: ${player !== undefined ? player.score : this.deadPlayerScore}`, 20, 30);
             for (let i = player.lifes, x = 20; i > 0; i--) {
@@ -255,6 +256,58 @@ class Game {
         if (this.timer <= 0) {
             this.gameOver(this.players[0]);
         }
+    }
+
+    textControl() {
+        // this.ctx.fillRect(this.screen.canvasWidth / 2, 0, this.screen.canvasWidth / 2, this.screen.canvasHeight)
+        if (this.timer <= 140 && this.timer > 136) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 1:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Kill mobs!`, (this.screen.canvasWidth / 2) - 50, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer <= 120 && this.timer > 116) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 1:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Kill the boss!`, (this.screen.canvasWidth / 2) - 70, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer <= 100 && this.timer > 96) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 2:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Kill mobs!`, (this.screen.canvasWidth / 2) - 50, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer <= 80 && this.timer > 76) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 2:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Kill boss!`, (this.screen.canvasWidth / 2) - 50, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer <= 60 && this.timer > 56) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 3:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Kill mobs!`, (this.screen.canvasWidth / 2) - 50, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer <= 40 && this.timer > 36) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Stage 3:", (this.screen.canvasWidth / 2) - 90, (this.screen.canvasHeight / 2) - 140);
+            this.ctx.font = "18px Orbitron";
+            this.ctx.fillText(`Final boss!`, (this.screen.canvasWidth / 2) - 50, (this.screen.canvasHeight / 2) - 100);
+        }
+        if (this.timer < 40 && this.timer > 0 && this.stageBoss && this.enemies.length == 0) {
+            this.ctx.font = "bold 40px Orbitron";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Well played!", (this.screen.canvasWidth / 2) - 120, (this.screen.canvasHeight / 2) - 140);
+        }
+        this.ctx.fillStyle = "black";
     }
 
     generateBonus() {
