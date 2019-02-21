@@ -11,7 +11,7 @@ class Screen {
         this.score = 0;
 
         this.keyboardBug = true;
-        this.theme = "orange";
+        this.theme = "red";
         this.difficulty = "med";
     }
 
