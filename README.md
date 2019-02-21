@@ -4,7 +4,7 @@
 
 Space ships battle game developed in pure Html5 and JS.
 
-Arrows to move. Spacebar to shoot. Ez.
+A & D kyes to move. Spacebar to shoot. Ez.
 
 ## MVP
 
@@ -115,7 +115,7 @@ There are 2 differents bullets; 1 shooteds by enemies and another 1 shooteds by 
 - [x] Player bullets collisions with enemies
 - [x] Enemies shoot
 - [x] Enemies bullets collisions with player
-- [] Backlog.
+- [x] Backlog.
 
 ## Links
 
