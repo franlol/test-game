@@ -362,11 +362,13 @@ class Ship {
                         cutHeight: 528,
                         // canvasStartX = this.x - (this.sizeX / 2),
                         // canvasStartY = this.y - (this.sizeY / 2),
-                        sizeX: 250,
-                        sizeY: 224,
+                        // sizeX: 250,
+                        // sizeY: 224,
+                        sizeX: 190,
+                        sizeY: 150,
                         yOffset: 150,
                         bullets: [{
-                            x: -76,   //from player x
+                            x: -61,   //from player x
                             y: -45, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
@@ -376,7 +378,7 @@ class Ship {
                             path: blueBlastImg
                         },
                         {
-                            x: -62,   //from player x
+                            x: -47,   //from player x
                             y: -45, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
@@ -387,7 +389,7 @@ class Ship {
                         },
                         {
                             x: -14,   //from player x
-                            y: -120, //from player y
+                            y: -95, //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
@@ -397,7 +399,7 @@ class Ship {
                         },
                         {
                             x: 14,   //from player x
-                            y: -120, //from player y
+                            y: -95, //from player y
                             sizeX: spinSizeX,
                             sizeY: spinSizeY,
                             strength: spinDamage,
@@ -406,7 +408,7 @@ class Ship {
                             path: blueSpinImg
                         },
                         {
-                            x: 60,   //from player x
+                            x: 45,   //from player x
                             y: -45, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
@@ -416,7 +418,7 @@ class Ship {
                             path: blueBlastImg
                         },
                         {
-                            x: 74,   //from player x
+                            x: 59,   //from player x
                             y: -45, //from player y
                             sizeX: blastSizeX,
                             sizeY: blastSizeY,
